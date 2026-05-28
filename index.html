@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福寿康（FortuneCare）研究报告</title>
+<style>
+  :root {
+    --bg: #fafaf9;
+    --card: #ffffff;
+    --text: #1c1917;
+    --muted: #78716c;
+    --accent: #b45309;
+    --accent-light: #fef3c7;
+    --border: #e7e5e4;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --yellow: #ca8a04;
+    --yellow-bg: #fefce8;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --blue: #2563eb;
+    --blue-bg: #eff6ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* Header */
+  .report-header {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .report-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .report-header .subtitle {
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .report-header .meta {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* Company card */
+  .company-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .company-card .field {
+    background: var(--card);
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  .company-card .field .label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .company-card .field .value {
+    font-weight: 600;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-number {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background: var(--text);
+    color: white;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--text);
+  }
+  .section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 24px 0 12px;
+    color: var(--text);
+  }
+  .section p {
+    margin-bottom: 12px;
+    color: #44403c;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+  }
+  thead th {
+    background: #f5f5f4;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-bottom: 2px solid var(--border);
+  }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fafaf9; }
+
+  /* Maturity badges */
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge-high { background: var(--green-bg); color: var(--green); }
+  .badge-mid { background: var(--yellow-bg); color: var(--yellow); }
+  .badge-low { background: var(--red-bg); color: var(--red); }
+  .badge-blue { background: var(--blue-bg); color: var(--blue); }
+
+  /* Flow diagram */
+  .flow {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 20px 0 24px;
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+    color: #44403c;
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-light);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .callout.verdict {
+    border-left-color: var(--red);
+    background: var(--red-bg);
+  }
+  .callout.insight {
+    border-left-color: var(--blue);
+    background: var(--blue-bg);
+  }
+  .callout strong { font-weight: 700; }
+
+  /* Comparison cards */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .comparison .card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    background: var(--card);
+  }
+  .comparison .card h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .comparison .card p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .comparison .card.story { border-top: 3px solid var(--accent); }
+  .comparison .card.reality { border-top: 3px solid var(--blue); }
+
+  /* Architecture diagram */
+  .arch-stack {
+    margin: 20px 0;
+  }
+  .arch-layer {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: -1px;
+    background: var(--card);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .arch-layer:first-child { border-radius: 6px 6px 0 0; }
+  .arch-layer:last-child { border-radius: 0 0 6px 6px; }
+  .arch-layer .layer-label {
+    flex-shrink: 0;
+    width: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    padding-top: 2px;
+  }
+  .arch-layer .layer-content {
+    font-size: 14px;
+    color: #44403c;
+  }
+  .l4 { background: #fef3c7; }
+  .l4 .layer-label { color: #92400e; }
+  .l3 { background: #ede9fe; }
+  .l3 .layer-label { color: #5b21b6; }
+  .l2 { background: #e0f2fe; }
+  .l2 .layer-label { color: #075985; }
+  .l1 { background: #f0fdf4; }
+  .l1 .layer-label { color: #166534; }
+  .l0 { background: #f5f5f4; }
+  .l0 .layer-label { color: #57534e; }
+
+  /* Gap analysis */
+  .gap-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .gap-row:last-child { border-bottom: none; }
+  .gap-label {
+    padding: 10px 14px;
+    font-weight: 600;
+    background: #f5f5f4;
+    border-right: 1px solid var(--border);
+  }
+  .gap-value {
+    padding: 10px 14px;
+    color: #44403c;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin: 16px 0 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline .event {
+    position: relative;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  .timeline .event::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--border);
+  }
+  .timeline .event .year {
+    font-weight: 700;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .sources h3 {
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: var(--muted);
+  }
+  .sources a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-decoration-color: #d6d3d1;
+  }
+  .sources li { margin-bottom: 4px; }
+
+  @media (max-width: 640px) {
+    .company-card { grid-template-columns: 1fr; }
+    .comparison { grid-template-columns: 1fr; }
+    .gap-row { grid-template-columns: 1fr; }
+    .gap-label { border-right: none; border-bottom: 1px solid var(--border); }
+    .arch-layer { flex-direction: column; gap: 4px; }
+    .arch-layer .layer-label { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="report-header">
+    <h1>福寿康（FortuneCare）研究报告</h1>
+    <div class="subtitle">居家养老照护龙头 · 核心业务 · 资本化路径 · 科技叙事拆解</div>
+    <div class="meta">2026年5月 · 基于公开信息整理</div>
+  </div>
+
+  <!-- Company Overview Card -->
+  <div class="company-card">
+    <div class="field"><div class="label">公司全称</div><div class="value">上海数颐联康科技股份有限公司</div></div>
+    <div class="field"><div class="label">原名</div><div class="value">福寿康智慧医疗养老服务（上海）有限公司</div></div>
+    <div class="field"><div class="label">成立时间</div><div class="value">2011年12月</div></div>
+    <div class="field"><div class="label">创始人</div><div class="value">张军（1980年生，九州大学商学院）</div></div>
+    <div class="field"><div class="label">总部</div><div class="value">上海市虹口区</div></div>
+    <div class="field"><div class="label">员工规模</div><div class="value">10,000+ 人</div></div>
+    <div class="field"><div class="label">服务城市</div><div class="value">全国 61 个城市</div></div>
+    <div class="field"><div class="label">分支机构</div><div class="value">400+ 家（含 280+ 医疗护理站）</div></div>
+    <div class="field"><div class="label">年服务量</div><div class="value">2,208 万+ 人次</div></div>
+    <div class="field"><div class="label">累计用户</div><div class="value">30 万+</div></div>
+    <div class="field"><div class="label">营收 / 净利率</div><div class="value">&gt;6 亿元 / ~7%（连续 4 年盈利）</div></div>
+    <div class="field"><div class="label">上海市场份额</div><div class="value">~30%</div></div>
+  </div>
+
+  <!-- ========== Section 1 ========== -->
+  <div class="section">
+    <h2><span class="section-number">1</span>核心业务与发展逻辑</h2>
+
+    <h3>起点：长护险政策红利</h3>
+    <p>福寿康 2011 年成立，但真正的增长拐点是 <strong>2016 年上海长护险试点</strong>。成为首批试点机构后，业务进入快车道。长护险制度下老人仅需自费 10%，政策端锁定了稳定的需求和支付来源。</p>
+
+    <h3>两个维度的扩张</h3>
+
+    <p><strong>维度一：服务纵深 —— 从长护险到"三层模型"</strong></p>
+    <table>
+      <thead><tr><th>层级</th><th>内容</th><th>支付方</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-blue">基础层</span> 长护险服务</td>
+          <td>40+ 项标准服务（上门护理、康复、代配药等）</td>
+          <td>医保基金（老人自费仅 10%）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">增值层</span> 商业服务</td>
+          <td>50+ 项（24h 居家照护、陪诊、上门助浴、辅具租赁、适老化改造等）</td>
+          <td>自费 + 商保</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">平台层</span> 智慧养老</td>
+          <td>照护 365 App、智慧家床、IoT 硬件、健康数据中台</td>
+          <td>尚在探索商业化</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>关键支付创新：</strong>福寿康打造了 <strong>"长护险 + 商保 + 自费"三元支付体系</strong>。用长护险积累的十余万老人健康数据来设计增值服务产品，并与保险公司合作推出照护增值服务包。商业收入占比已超 30%。
+    </div>
+
+    <p><strong>维度二：地域扩张 —— "跟着长护险政策走"</strong></p>
+    <p>61 个城市中有 40+ 个开展了长护险业务。扩张路径清晰：深耕长三角（大本营）→ 拓展珠三角 → 逐步全国化。本质是 <strong>政策驱动的扩张</strong>，随着国家长护险从试点走向全面建制（2026 年 4 月），市场空间持续打开。</p>
+
+    <h3>发展逻辑的核心链路</h3>
+    <div class="flow">长护险政策红利（获客引擎）
+  → 标准化服务体系（规模化复制能力）
+    → 数据沉淀（30万+ 老人健康档案）
+      → 增值服务设计（商业化变现）
+        → "长护险 + 商保 + 自费" 三元支付</div>
+
+    <p>本质是：<strong>用政策保障的 to-G 业务建立规模和数据壁垒，再用数据驱动 to-C 商业化。</strong></p>
+  </div>
+
+  <!-- ========== Section 2 ========== -->
+  <div class="section">
+    <h2><span class="section-number">2</span>融资历程与 IPO 准备</h2>
+
+    <h3>融资历程：10 轮，明星资本加持</h3>
+    <table>
+      <thead><tr><th>轮次</th><th>时间</th><th>金额</th><th>主要投资方</th></tr></thead>
+      <tbody>
+        <tr><td>天使轮</td><td>2016</td><td>—</td><td>—</td></tr>
+        <tr><td>A 轮</td><td>2018</td><td>—</td><td>复星医药</td></tr>
+        <tr><td>B 轮</td><td>2020.12</td><td>数千万美元</td><td><strong>启明创投</strong>领投，同龙资本、达晨创投</td></tr>
+        <tr><td>B+ 轮</td><td>2021</td><td>数亿元</td><td>启明创投</td></tr>
+        <tr><td>战略投资</td><td>2022.07</td><td>—</td><td><strong>腾讯</strong></td></tr>
+        <tr><td>C 轮</td><td>2022.08</td><td>数亿元</td><td>启明创投</td></tr>
+        <tr><td>C+ 轮</td><td>2022.12</td><td>超亿元</td><td><strong>国寿大养老基金</strong>独家</td></tr>
+      </tbody>
+    </table>
+    <p>累计完成 <strong>10 轮融资</strong>，投资方包括红杉中国、启明创投、腾讯、复星集团、达晨创投、国寿大养老基金等。</p>
+
+    <h3>股改与 IPO 准备（2026 年最新）</h3>
+    <p>2026 年 3 月，福寿康完成股份制改造：</p>
+    <table>
+      <thead><tr><th>变更项</th><th>详情</th></tr></thead>
+      <tbody>
+        <tr><td>公司更名</td><td>福寿康智慧医疗养老服务（上海）有限公司 → <strong>上海数颐联康科技股份有限公司</strong></td></tr>
+        <tr><td>注册资本</td><td>1,377 万 → <strong>3,206 万</strong>（翻倍）</td></tr>
+        <tr><td>企业类型</td><td>有限责任公司 → 股份有限公司（港澳台投资、<strong>未上市</strong>）</td></tr>
+        <tr><td>人事变动</td><td>6 名核心成员退出（赵冬梅、张立等董事/监事）</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>解读：</strong>股改是 IPO 前的标准准备动作。更名为"数颐联康<strong>科技</strong>"而非保留"福寿康""医疗养老服务"，反映了明确的<strong>估值叙事意图</strong>——从服务公司转向科技公司定位。但 IPO 具体时间表和目标交易所尚未披露。
+    </div>
+  </div>
+
+  <!-- ========== Section 3 ========== -->
+  <div class="section">
+    <h2><span class="section-number">3</span>资产与运营模式</h2>
+
+    <h3>核心定位：轻资产服务运营</h3>
+    <p>张军明确表态：<strong>"我们不会去做重资产，提供的还是服务。"</strong> 福寿康不做不动产开发，专注于服务输出和运营管理。</p>
+
+    <h3>三大产品体系</h3>
+    <table>
+      <thead><tr><th>产品线</th><th>规模</th><th>资产模式</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>医疗护理站</strong></td>
+          <td>280+ 个</td>
+          <td><span class="badge badge-high">轻资产</span></td>
+          <td>长护险定点机构，社区小型站点。部分公建运营，部分自建。以人力输出为主，人力成本为主要支出</td>
+        </tr>
+        <tr>
+          <td><strong>日托 / 长者照护之家</strong></td>
+          <td>70+ 家</td>
+          <td><span class="badge badge-mid">公建民营</span></td>
+          <td>与国企合作，承接公立机构的委托运营。社区嵌入式服务设施</td>
+        </tr>
+        <tr>
+          <td><strong>养老机构</strong></td>
+          <td>9 家</td>
+          <td><span class="badge badge-mid">公建民营</span></td>
+          <td>上海年均约 2,000 位客户入住。有专门团队运营此板块</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>另有 <strong>13 家医疗诊所</strong>和 <strong>1 家互联网医院</strong>，补充医疗能力。</p>
+
+    <div class="callout insight">
+      <strong>注意：福寿康没有做 CCRC（持续照料退休社区）。</strong>CCRC 是典型重资产模式，与其轻资产战略矛盾。福寿康做的养老机构是公建民营的中小型社区养老机构，不是高端 CCRC。
+    </div>
+
+    <h3>运营能力的关键数据</h3>
+    <table>
+      <thead><tr><th>指标</th><th>数据</th></tr></thead>
+      <tbody>
+        <tr><td>护理员平均月薪</td><td>8,000 元+</td></tr>
+        <tr><td>人才供给</td><td>在云南、四川建培训学校，自建护理人才输送管线</td></tr>
+        <tr><td>研发团队</td><td>"护联网中心"，百人规模</td></tr>
+        <tr><td>中台管理</td><td>统一服务话术、录音追溯、防虚假打卡，管理 400+ 连锁点位</td></tr>
+        <tr><td>保险合作</td><td>与太平洋保险合作，全程服务投保，出险工作日 24h 内响应</td></tr>
+      </tbody>
+    </table>
+
+    <h3>模式的核心特征</h3>
+    <p>轻资产模式保证了扩张速度，但也意味着护城河主要在<strong>"运营标准化能力"</strong>和<strong>"政策资源关系"</strong>上，而非资产壁垒。人力成本是最大支出项，规模经济效应主要来自中台管理效率的提升。</p>
+  </div>
+
+  <!-- ========== Section 4 ========== -->
+  <div class="section">
+    <h2><span class="section-number">4</span>智慧养老平台：故事 vs 现实</h2>
+
+    <h3>福寿康想讲的故事</h3>
+    <p>科技叙事可以用一句话概括：<strong>从"劳动密集型养老服务公司"转型为"科技驱动的居家照护平台公司"</strong>。公司名里不再有"福寿康"和"医疗养老服务"，取而代之的是"数"（数字化）+"科技"。</p>
+
+    <p>故事的技术架构如下：</p>
+    <div class="arch-stack">
+      <div class="arch-layer l4">
+        <div class="layer-label">第四层<br>开放生态</div>
+        <div class="layer-content">"汇聚合作伙伴，构建智慧养老生态圈"<br>API 接口对接 · 数据互通 · 资源共享 · 供应链合作</div>
+      </div>
+      <div class="arch-layer l3">
+        <div class="layer-label">第三层<br>AI 决策</div>
+        <div class="layer-content">RAG + 深度学习 → 个性化健康评估、风险预警<br>AI 语音质检 → 服务合规自动审核（准确率 ~90%）</div>
+      </div>
+      <div class="arch-layer l2">
+        <div class="layer-label">第二层<br>数据中台</div>
+        <div class="layer-content">云原生架构，沉淀 30 万+ 老人健康档案<br>血压 / 血氧 / 心率 / 睡眠 / 行为 / 用药等多维度数据</div>
+      </div>
+      <div class="arch-layer l1">
+        <div class="layer-label">第一层<br>IoT 硬件</div>
+        <div class="layer-content">毫米波雷达监测仪 · 智慧床垫 · 智能药箱 · 智能屏<br>水浸/烟雾探测器 · 手环 · 跌倒报警器</div>
+      </div>
+      <div class="arch-layer l0">
+        <div class="layer-label">服务履约<br>（人）</div>
+        <div class="layer-content">照护 365 App（护理员端）+ 家属端小程序<br>工单派发 → 人脸打卡 → 实时录音 → GPS 定位 → AI 质检</div>
+      </div>
+    </div>
+
+    <h3>实际已经做了什么（按成熟度排序）</h3>
+
+    <p style="margin-bottom: 4px; font-weight: 600; color: var(--green);">● 已落地且有实际产出</p>
+    <table>
+      <thead><tr><th>模块</th><th>具体内容</th><th>成熟度</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>服务质控系统</strong></td>
+          <td>照护 365 App：人脸识别打卡、GPS / 蓝牙 / 信标定位、全程录音、声纹识别。AI 语音质检自动审核工单合规性（~90% 准确率），<strong>不合规率从 30% 降至 ~1%</strong></td>
+          <td><span class="badge badge-high">成熟</span></td>
+        </tr>
+        <tr>
+          <td><strong>运营管理中台</strong></td>
+          <td>400+ 站点连锁化管理。统一服务话术、CRM、培训系统、排班调度、录音笔追溯</td>
+          <td><span class="badge badge-high">成熟</span></td>
+        </tr>
+        <tr>
+          <td><strong>照护 365 App / 小程序</strong></td>
+          <td>护理员端（工单接收、服务执行、数据上传）+ 家属端（服务可视化、远程查看）。覆盖 36 个城市</td>
+          <td><span class="badge badge-high">成熟</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-bottom: 4px; font-weight: 600; color: var(--yellow);">● 已发布但尚处早期</p>
+    <table>
+      <thead><tr><th>模块</th><th>具体内容</th><th>成熟度</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>毫米波生物雷达监测仪</strong></td>
+          <td>与上海交大 AI 研究院 + 希卡立科技联合研发。毫米波体征探测，无感监测呼吸/心率/离床</td>
+          <td><span class="badge badge-mid">早期</span></td>
+        </tr>
+        <tr>
+          <td><strong>智慧家床方案</strong></td>
+          <td>IoT 设备组合（床垫 + 药箱 + 智能屏 + 传感器），平台连接实现远程查房</td>
+          <td><span class="badge badge-mid">早期</span></td>
+        </tr>
+        <tr>
+          <td><strong>智能药箱</strong></td>
+          <td>7 层 25 格，定时弹出提醒，监测用药行为</td>
+          <td><span class="badge badge-mid">早期</span></td>
+        </tr>
+        <tr>
+          <td><strong>商业服务产品化</strong></td>
+          <td>6 大 SKU 上线官网：私人专护、巡护 360、忆心守护（认知症）、照护管家、短时上门照护、辅具租赁</td>
+          <td><span class="badge badge-mid">早期</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-bottom: 4px; font-weight: 600; color: var(--red);">● 仍在愿景 / 概念阶段</p>
+    <table>
+      <thead><tr><th>模块</th><th>具体内容</th><th>成熟度</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>AI 健康评估（RAG）</strong></td>
+          <td>结合历史健康数据生成个性化评估和干预建议</td>
+          <td><span class="badge badge-low">概念</span></td>
+        </tr>
+        <tr>
+          <td><strong>开放平台 / 生态圈</strong></td>
+          <td>API 对外开放，吸引第三方合作伙伴。目前仅与可靠股份有战略合作意向</td>
+          <td><span class="badge badge-low">概念</span></td>
+        </tr>
+        <tr>
+          <td><strong>SaaS 对外输出</strong></td>
+          <td>将运营系统、智慧养老方案输出给第三方养老机构</td>
+          <td><span class="badge badge-low">概念</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>科技叙事的薄弱环节</h3>
+    <div style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 16px 0;">
+      <div class="gap-row">
+        <div class="gap-label">硬件非自研</div>
+        <div class="gap-value">毫米波雷达是与交大 + 希卡立联合研发，智能药箱/床垫的供应链关系不明。福寿康不是硬件公司，不掌握核心器件</div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-label">研发人员占比极低</div>
+        <div class="gap-value">百人研发团队 vs 万人服务团队，研发占比约 1%，典型的服务公司人员结构</div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-label">无 SaaS 对外收入</div>
+        <div class="gap-value">所有技术目前都是自用，没有找到对外卖技术/平台的任何案例。"平台公司"叙事缺乏 to-B 收入支撑</div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-label">AI 应用深度有限</div>
+        <div class="gap-value">最成熟的 AI 应用是录音质检（本质是 NLP 合规审核），RAG 健康评估停留在概念层面</div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-label">生态合作刚起步</div>
+        <div class="gap-value">唯一公开的战略合作是可靠股份（成人纸尿裤），这是供应链合作而非平台生态</div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-label">更名时机</div>
+        <div class="gap-value">股改更名为"科技公司"发生在 IPO 筹备期，有明显的估值叙事驱动</div>
+      </div>
+    </div>
+
+    <h3>真正有壁垒的是什么？</h3>
+    <div class="callout insight">
+      <strong>不是硬件，不是 AI，而是服务质控系统 + 运营数据沉淀。</strong><br><br>
+      十几年积累的核心数字资产是：30 万+ 老人健康档案和服务记录、一套能把工单不合规率从 30% 压到 1% 的质控体系、400+ 站点标准化运营的 know-how 数字化。这些是竞对短期内无法复制的。但这更像是<strong>"用数字化武装的服务公司"</strong>，而非<strong>"科技平台公司"</strong>。
+    </div>
+  </div>
+
+  <!-- ========== Section 5 ========== -->
+  <div class="section">
+    <h2><span class="section-number">5</span>总结：故事与现实</h2>
+
+    <div class="comparison">
+      <div class="card story">
+        <h4>对资本市场讲的故事</h4>
+        <p>我们是一家<strong>科技平台公司</strong>，用 AI + IoT 重新定义居家养老。30 万用户数据是壁垒，智慧养老平台可以对外赋能，想象空间是万亿级市场的平台型选手。</p>
+      </div>
+      <div class="card reality">
+        <h4>实际的状态</h4>
+        <p>一家靠长护险政策红利起家、运营能力出色的<strong>连锁服务公司</strong>，正在用数字化工具提升内部效率（质控系统做得确实好），同时尝试用硬件 + AI 包装提升客单价和品牌溢价。</p>
+      </div>
+    </div>
+
+    <h3>关键判断</h3>
+    <table>
+      <thead><tr><th>维度</th><th>评估</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>技术的角色</strong></td>
+          <td>"武装服务"而非"替代服务"。技术让服务更标准、更可控、更可追溯，但核心交付仍然依赖万人级护理员团队</td>
+        </tr>
+        <tr>
+          <td><strong>平台化程度</strong></td>
+          <td>平台化和对外输出基本还在设想阶段。目前所有技术仅供内部使用，无 to-B 技术收入</td>
+        </tr>
+        <tr>
+          <td><strong>更名的本质</strong></td>
+          <td>"数颐联康科技"本质是为 IPO 估值服务。按服务公司估值，净利率 7%、劳动密集型，PE 不会高；讲通"科技平台"故事，估值模型完全不同</td>
+        </tr>
+        <tr>
+          <td><strong>真正的壁垒</strong></td>
+          <td>政策资源关系（280+ 长护险定点资质）+ 运营标准化能力（质控体系）+ 数据沉淀（30万+ 用户），而非技术本身</td>
+        </tr>
+        <tr>
+          <td><strong>最大风险</strong></td>
+          <td>长护险锁定需求但压薄毛利，劳动密集限制利润率天花板。如果"科技叙事"无法说服资本市场，IPO 估值将受限</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout verdict">
+      <strong>一句话总结：</strong>福寿康是一家<strong>优秀的、用数字化武装过的居家养老连锁服务公司</strong>，正在为 IPO 尝试穿上"科技平台"的外衣。内功扎实（质控系统、运营标准化、数据沉淀），但科技叙事的支撑证据还不够充分——百人研发团队、无对外技术收入、AI 应用局限于质检——距离真正的"科技平台公司"还有显著差距。
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources">
+    <h3>信息来源</h3>
+    <ol>
+      <li><a href="https://www.zhaohu365.com/">福寿康官网</a></li>
+      <li><a href="https://finance.sina.com.cn/wm/2026-03-17/doc-inhrikri7965754.shtml">居家养老龙头"福寿康"完成股改 — 新浪财经 2026.03</a></li>
+      <li><a href="https://www.ageclub.net/article-detail/9216">福寿康变身，居家养老在等一个 IPO — AgeClub</a></li>
+      <li><a href="https://www.qimingvc.com/cn/news/%E5%90%AF%E6%98%8E%E5%AF%B9%E8%AF%9Dceo-%E7%A6%8F%E5%AF%BF%E5%BA%B7%EF%BC%9A%E6%9C%89%E6%B8%A9%E5%BA%A6%E7%9A%84%E5%8C%BB%E5%85%BB%E5%BA%B7%E5%A4%8D%E6%9C%8D%E5%8A%A1">启明对话 CEO：福寿康张军 — 启明创投</a></li>
+      <li><a href="https://www.cls.cn/detail/811708">福寿康副总赵一洪：十年摸索出居家养老服务标准 — 财联社</a></li>
+      <li><a href="https://finance.sina.com.cn/jjxw/2025-06-12/doc-inezvqqa6784455.shtml">福寿康发布新产品重新定义"智慧照护" — 新浪财经 2025.06</a></li>
+      <li><a href="https://finance.sina.com.cn/jjxw/2024-12-06/doc-incypaas8889341.shtml">"AI+长护险"工单流转更透明 — 新浪财经 2024.12</a></li>
+      <li><a href="https://www.sheitc.sh.gov.cn/zxxx/20221229/5a86180f48fd4895a46698200b65fc34.html">社区智慧康养服务助长者生活更美好 — 上海经信委 2022.12</a></li>
+      <li><a href="https://www.sohu.com/a/903845542_121924584">AI 驱动智慧照护创新：福寿康发布多模态居家医疗产品 — 搜狐 2025.06</a></li>
+      <li><a href="https://zijinthink.com/nd.jsp?id=171&groupId=-1">福寿康新品发布与战略合作 — 紫金智库 2025.06</a></li>
+      <li><a href="https://news.pedaily.cn/202212/506059.shtml">福寿康完成超亿元 C+ 轮融资 — 投资界 2022.12</a></li>
+      <li><a href="https://www.feishu.cn/customers/FortuneCare">福寿康：260+ 医疗护理站全方位管理 — 飞书客户案例</a></li>
+      <li><a href="https://www.zhaohu365.com/product">福寿康产品页</a></li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>
