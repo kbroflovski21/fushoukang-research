@@ -35,14 +35,15 @@
     background: var(--red-bg); border-radius: 8px; font-size: 15px; color: var(--red); font-weight: 600;
   }
 
-  .section { margin-bottom: 48px; }
+  .section { margin-bottom: 56px; }
   .section-number {
     display: inline-block; width: 28px; height: 28px; line-height: 28px;
     text-align: center; background: var(--accent); color: white;
     border-radius: 50%; font-size: 13px; font-weight: 700; margin-right: 10px; vertical-align: middle;
   }
   .section h2 { font-size: 22px; font-weight: 700; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); }
-  .section h3 { font-size: 18px; font-weight: 700; margin: 22px 0 10px; }
+  .section h3 { font-size: 18px; font-weight: 700; margin: 28px 0 10px; }
+  .section h4 { font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--muted); }
   .section p { margin-bottom: 12px; color: #44403c; }
 
   table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 15.5px; }
@@ -62,48 +63,54 @@
   .callout.demo { border-left-color: var(--blue); background: var(--blue-bg); }
   .callout strong { font-weight: 700; }
 
-  .step-list { counter-reset: step; list-style: none; padding: 0; margin: 16px 0; }
-  .step-list li {
-    counter-increment: step; padding: 14px 16px 14px 52px; position: relative;
-    border-bottom: 1px solid var(--border); font-size: 15.5px; line-height: 1.7;
+  /* Hero keyword: big red text for key phrases */
+  .hero-keyword {
+    display: block;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--red);
+    margin: 16px 0 8px;
+    line-height: 1.3;
   }
-  .step-list li::before {
-    content: counter(step); position: absolute; left: 12px; top: 14px;
-    width: 26px; height: 26px; line-height: 26px; text-align: center;
-    background: var(--accent); color: white; border-radius: 50%; font-size: 13px; font-weight: 700;
+  .hero-keyword-sm {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--red);
+    margin: 12px 0 6px;
+    line-height: 1.3;
   }
-  .step-list li:last-child { border-bottom: none; }
-
-  .evidence-chain {
-    display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 20px 0;
-  }
-  .evidence-item {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 14px 10px; text-align: center;
-  }
-  .evidence-item .icon { font-size: 24px; margin-bottom: 6px; }
-  .evidence-item .label { font-size: 13px; font-weight: 700; color: var(--accent); }
-  .evidence-item .desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
-
-  .flow {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 24px; margin: 20px 0 24px; font-family: "SF Mono", "Fira Code", monospace;
-    font-size: 14.5px; line-height: 1.6; overflow-x: auto; white-space: pre; color: #44403c;
+  .hero-keyword-xs {
+    display: inline;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--red);
   }
 
-  .talking-point {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 18px 22px; margin: 12px 0;
+  /* Comparison sub-sections */
+  .compare-block {
+    border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 16px 0 24px;
   }
-  .talking-point .tp-label {
-    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-    color: var(--accent); margin-bottom: 6px;
+  .compare-header {
+    padding: 10px 16px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;
   }
-  .talking-point .tp-say { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-  .talking-point .tp-why { font-size: 14px; color: var(--muted); }
+  .compare-header.others { background: #f5f5f4; color: var(--muted); }
+  .compare-header.gy { background: var(--accent-light); color: var(--accent); }
+  .compare-row {
+    display: grid; grid-template-columns: 140px 1fr; border-bottom: 1px solid var(--border);
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-label {
+    padding: 10px 14px; font-weight: 600; font-size: 14px;
+    border-right: 1px solid var(--border); background: #fafaf9;
+  }
+  .compare-value { padding: 10px 14px; font-size: 15px; color: #44403c; }
 
   @media (max-width: 640px) {
-    .evidence-chain { grid-template-columns: repeat(3, 1fr); }
+    .hero-keyword { font-size: 24px; }
+    .hero-keyword-sm { font-size: 19px; }
+    .compare-row { grid-template-columns: 1fr; }
+    .compare-label { border-right: none; border-bottom: 1px solid var(--border); }
   }
 </style>
 </head>
@@ -123,7 +130,8 @@
   <div class="section" id="pain">
     <h2><span class="section-number">1</span>行业三大痛点</h2>
 
-    <h3>痛点一：服务不透明</h3>
+    <!-- Pain 1 -->
+    <span class="hero-keyword">服务不透明</span>
     <div class="callout gov">
       <strong>本质问题：</strong>政府通过长护险购买上门养老服务，但对服务是否真实发生、质量是否达标缺乏可信的感知和验证手段。花出去的钱看不见、审不了、说不清。
     </div>
@@ -158,7 +166,8 @@
       </tbody>
     </table>
 
-    <h3>痛点二：质量无体系</h3>
+    <!-- Pain 2 -->
+    <span class="hero-keyword">质量无体系</span>
     <div class="callout gov">
       <strong>本质问题：</strong>养老服务行业缺乏将质量管理落地实施的体系化方案。纸上的标准难以落地执行、难以量化评价、难以跨机构跨地区复制，若干支撑环节的不足是主要原因。
     </div>
@@ -188,7 +197,8 @@
       </tbody>
     </table>
 
-    <h3>痛点三：人效上不去</h3>
+    <!-- Pain 3 -->
+    <span class="hero-keyword">人效上不去</span>
     <div class="callout gov">
       <strong>本质问题：</strong>护理人员结构性短缺不可逆，但现有体系未能有效解决培训效率和人员效能问题。人不够、培训消耗大、大量时间花在非服务的行政事务上。
     </div>
@@ -218,17 +228,20 @@
   <div class="section" id="solutions">
     <h2><span class="section-number">2</span>金色年华的解法</h2>
 
-    <h3>针对痛点一（服务不透明）：服务过程黑箱变白箱</h3>
+    <h3>针对痛点一（服务不透明）</h3>
+    <span class="hero-keyword-sm">服务过程黑箱变白箱</span>
     <div class="callout">
       多模态（录音/雷达/声纹）自动采集、AI分析、交叉验证每一次上门服务内容，全程可感知、可追溯、可审计。
     </div>
 
-    <h3>针对痛点二（质量无体系）：从"标准在纸上"到"标准在现场"</h3>
+    <h3>针对痛点二（质量无体系）</h3>
+    <span class="hero-keyword-sm">从"标准在纸上"到"标准在现场"</span>
     <div class="callout">
       纸面标准转化为AI实时执行的质控规则，匹配服务流程自动执行事前引导、事中督导、事后评估，并纳入质量管理闭环。
     </div>
 
-    <h3>针对痛点三（人效上不去）：AI做副驾，单兵变团队</h3>
+    <h3>针对痛点三（人效上不去）</h3>
+    <span class="hero-keyword-sm">AI做副驾，单兵变团队</span>
     <div class="callout">
       护理员在AI引导+督导下专注服务、新人在实景化培训中快速上手、重复性工作在自动化流程中被解放。
     </div>
@@ -237,121 +250,178 @@
   <!-- ====== S3: WHY GOLDEN YEARS ====== -->
   <div class="section" id="advantages">
     <h2><span class="section-number">3</span>金色年华的方案好在哪里？</h2>
-    <p>以下从五个角度展开，每个角度对比市场常见做法和先进方案，说明金色年华的方案为什么更优。</p>
+    <p>以下从五个角度展开，每个角度对比市场其他方案，说明金色年华的方案为什么更优。</p>
 
-    <!-- Angle 1 -->
+    <!-- ===== Angle 1 ===== -->
     <h3>角度一：解决服务不透明</h3>
-    <h4>常见做法</h4>
-    <p>GPS 打卡+拍照+签字。只能证明"人到了"，拍照可摆拍、签字可代签，造假零成本。</p>
-    <h4>先进方案</h4>
-    <p>全程录音+事后 AI 质检（如福寿康）。能发现问题，但服务已结束无法纠正，且仅单一数据源，无法交叉验证。</p>
-    <h4>金色年华</h4>
-    <table>
-      <thead><tr><th style="width:120px">维度</th><th>内容</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>技术</strong></td>
-          <td><strong>多模态+声纹+交叉矛盾检测+事中干预。</strong>录音、雷达、声纹、定位多源同时采集，AI 不仅分别分析，还做交叉矛盾检测——录音说"帮老人翻身"但雷达无床上动作，自动标记矛盾。声纹双向锁定护理员和老人身份。全部在服务进行中实时完成，不是事后补救。</td>
-        </tr>
-        <tr>
-          <td><strong>机制</strong></td>
-          <td><strong>政府独立审计入口。</strong>为政府提供独立的监管门户，政府随时可自主调取任何一次服务的原始数据和 AI 分析报告，不依赖服务机构提供。监管方拥有自己的钥匙。</td>
-        </tr>
-      </tbody>
-    </table>
 
-    <!-- Angle 2 -->
-    <h3>角度二：解决质量无体系</h3>
-    <h4>常见做法</h4>
-    <p>纸面 SOP+课堂培训+人工抽查。标准挂墙上，执行靠自觉，抽查覆盖率不到 5%。</p>
-    <h4>先进方案</h4>
-    <p>有质量看板+护理员评分体系（如福寿康）。能看到结果统计，但 SOP 和执行是分离的，质量管理偏事后统计，缺乏从标准到执行到改进的实时闭环。</p>
-    <h4>金色年华</h4>
-    <table>
-      <thead><tr><th style="width:120px">维度</th><th>内容</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>技术</strong></td>
-          <td><strong>标准即代码+全流程控制。</strong>主管写白话标准 → AI 自动生成督导/引导/评估规则 → 事前引导（提醒该做什么）→ 事中督导（检测是否做了）→ 事后评估（自动评分）。更新一次 SOP，全部护理员的 AI 助手同步生效。</td>
-        </tr>
-        <tr>
-          <td><strong>机制</strong></td>
-          <td><strong>PDCA 自动闭环。</strong>引进 AIAG（汽车行业标准化组织）的质量控制方法论：问题自动识别 → 根因分析（SOP 不合理？培训不到位？个人能力？）→ 自动派发纠正动作 → 验证改进效果 → 闭环。养老行业第一次拥有工业级的质量管理体系。</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Angle 3 -->
-    <h3>角度三：解决人效问题</h3>
-    <h4>常见做法</h4>
-    <p>加人、加培训。但人招不到、培训完离职，护理员大量时间花在手填记录等行政事务上。</p>
-    <h4>先进方案</h4>
-    <p>数字化提升管理层效率（如天与站长管理半径达同行 2-3 倍），但一线护理员的工作方式未被改变（如福寿康护理员仍需手动记录）。</p>
-    <h4>金色年华</h4>
-    <table>
-      <thead><tr><th style="width:120px">维度</th><th>内容</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>技术</strong></td>
-          <td><strong>"三实副驾"——实时、实地、实景。</strong>AI 在真实服务现场、实时伴随护理员，基于当前服务的实际场景做引导和督导。不是课堂模拟，是战场上的副驾驶。初级员工在 AI 引导下接近高级水平，服务记录全自动生成，零行政负担。</td>
-        </tr>
-        <tr>
-          <td><strong>机制</strong></td>
-          <td><strong>个性化技能图谱。</strong>AI 持续分析每位护理员的服务数据，自动识别强项和短板，针对性推送微训练内容。不仅释放入职前集中培训的人力和时间，也持续释放后期质量改进中的管理成本。培训从"一次性事件"变为"持续进化过程"，且不额外消耗人力。</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Angle 4 -->
-    <h3>角度四：长护是持续的 — AI 蒸馏档案，跟人走而非跟机构走</h3>
-    <h4>常见做法</h4>
-    <p>每家机构各自记录，老人换机构、护理员换岗位，之前的数据断裂，从头开始了解。</p>
-    <h4>先进方案</h4>
-    <p>有用户档案管理（如福寿康 30 万+用户），但数据停留在本机构系统内，不可迁移，换机构就失效。</p>
-    <h4>金色年华</h4>
-    <p>长护险服务不是一次性的，是伴随老人数年甚至十数年的持续过程。金色年华为每位老人和每位护理员构建<strong>"AI 蒸馏档案"</strong>：</p>
-    <table>
-      <thead><tr><th style="width:120px">档案类型</th><th>内容</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>老人档案</strong></td>
-          <td>AI 从每次服务中持续提取健康状态、偏好、风险信号、服务效果，蒸馏为不断更新的结构化画像。老人迁入其他机构或地区，档案直接跟随，新团队拿到即可继续高质量服务，无需从头了解。</td>
-        </tr>
-        <tr>
-          <td><strong>护理员档案</strong></td>
-          <td>每位护理员的技能图谱、服务评分、成长轨迹持续积累。护理员换站点或换机构，能力画像跟着走，接收方立即了解 ta 的水平和需要加强的方向。</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="callout">
-      <strong>核心逻辑：</strong>数据跟人走，不跟机构走。这让长护险真正成为"长期"护理，而不是每换一个服务方就重来一次。
+    <div class="compare-block">
+      <div class="compare-header others">其他方案</div>
+      <div class="compare-row">
+        <div class="compare-label">常规实践</div>
+        <div class="compare-value">GPS 打卡+拍照+签字。只能证明"人到了"，拍照可摆拍、签字可代签，造假零成本。</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">较先进方案</div>
+        <div class="compare-value">全程录音+事后 AI 质检（如福寿康）。能发现问题，但服务已结束无法纠正，且仅单一数据源，无法交叉验证。</div>
+      </div>
     </div>
 
-    <!-- Angle 5 -->
+    <div class="compare-block">
+      <div class="compare-header gy">金色年华方案</div>
+      <div class="compare-row">
+        <div class="compare-label">技术</div>
+        <div class="compare-value">
+          <span class="hero-keyword-xs">多模态 + 声纹 + 交叉矛盾检测 + 事中干预</span><br>
+          录音、雷达、声纹、定位多源同时采集，AI 不仅分别分析，还做交叉矛盾检测——录音说"帮老人翻身"但雷达无床上动作，自动标记矛盾。声纹双向锁定护理员和老人身份。全部在服务进行中实时完成，不是事后补救。
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">机制</div>
+        <div class="compare-value">
+          <span class="hero-keyword-xs">政府独立审计入口</span><br>
+          为政府提供独立的监管门户，政府随时可自主调取任何一次服务的原始数据和 AI 分析报告，不依赖服务机构提供。监管方拥有自己的钥匙。
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Angle 2 ===== -->
+    <h3>角度二：解决质量无体系</h3>
+
+    <div class="compare-block">
+      <div class="compare-header others">其他方案</div>
+      <div class="compare-row">
+        <div class="compare-label">常规实践</div>
+        <div class="compare-value">纸面 SOP+课堂培训+人工抽查。标准挂墙上，执行靠自觉，抽查覆盖率不到 5%。</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">较先进方案</div>
+        <div class="compare-value">有质量看板+护理员评分体系（如福寿康）。能看到结果统计，但 SOP 和执行是分离的，质量管理偏事后统计，缺乏从标准到执行到改进的实时闭环。</div>
+      </div>
+    </div>
+
+    <div class="compare-block">
+      <div class="compare-header gy">金色年华方案</div>
+      <div class="compare-row">
+        <div class="compare-label">技术</div>
+        <div class="compare-value">
+          <span class="hero-keyword-xs">标准即代码 + 全流程控制</span><br>
+          主管写白话标准 → AI 自动生成督导/引导/评估规则 → 事前引导（提醒该做什么）→ 事中督导（检测是否做了）→ 事后评估（自动评分）。更新一次 SOP，全部护理员的 AI 助手同步生效。
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">机制</div>
+        <div class="compare-value">
+          <span class="hero-keyword-xs">PDCA 自动闭环（引进 AIAG 工业级质量方法论）</span><br>
+          问题自动识别 → 根因分析（SOP 不合理？培训不到位？个人能力？）→ 自动派发纠正动作 → 验证改进效果 → 闭环。养老行业第一次拥有工业级的质量管理体系。
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Angle 3 ===== -->
+    <h3>角度三：解决人效问题</h3>
+
+    <div class="compare-block">
+      <div class="compare-header others">其他方案</div>
+      <div class="compare-row">
+        <div class="compare-label">常规实践</div>
+        <div class="compare-value">加人、加培训。但人招不到、培训完离职，护理员大量时间花在手填记录等行政事务上。</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">较先进方案</div>
+        <div class="compare-value">数字化提升管理层效率（如天与站长管理半径达同行 2-3 倍），但一线护理员的工作方式未被改变（如福寿康护理员仍需手动记录）。</div>
+      </div>
+    </div>
+
+    <div class="compare-block">
+      <div class="compare-header gy">金色年华方案</div>
+      <div class="compare-row">
+        <div class="compare-label">技术</div>
+        <div class="compare-value">
+          <span class="hero-keyword-xs">"三实副驾"—— 实时、实地、实景</span><br>
+          AI 在真实服务现场、实时伴随护理员，基于当前服务的实际场景做引导和督导。不是课堂模拟，是战场上的副驾驶。初级员工在 AI 引导下接近高级水平，服务记录全自动生成，零行政负担。
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">机制</div>
+        <div class="compare-value">
+          <span class="hero-keyword-xs">个性化技能图谱</span><br>
+          AI 持续分析每位护理员的服务数据，自动识别强项和短板，针对性推送微训练内容。不仅释放入职前集中培训的人力和时间，也持续释放后期质量改进中的管理成本。培训从"一次性事件"变为"持续进化过程"，且不额外消耗人力。
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Angle 4 ===== -->
+    <h3>角度四：长护是持续的</h3>
+
+    <div class="compare-block">
+      <div class="compare-header others">其他方案</div>
+      <div class="compare-row">
+        <div class="compare-label">常规实践</div>
+        <div class="compare-value">每家机构各自记录，老人换机构、护理员换岗位，之前的数据断裂，从头开始了解。</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">较先进方案</div>
+        <div class="compare-value">有用户档案管理（如福寿康 30 万+用户），但数据停留在本机构系统内，不可迁移，换机构就失效。</div>
+      </div>
+    </div>
+
+    <div class="compare-block">
+      <div class="compare-header gy">金色年华方案</div>
+      <div class="compare-row">
+        <div class="compare-label" style="height: auto;">核心理念</div>
+        <div class="compare-value">
+          <span class="hero-keyword-xs">AI 蒸馏档案 —— 数据跟人走，不跟机构走</span><br>
+          长护险服务不是一次性的，是伴随老人数年甚至十数年的持续过程。金色年华为每位老人和每位护理员构建持续更新的"AI 蒸馏档案"。
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">老人档案</div>
+        <div class="compare-value">AI 从每次服务中持续提取健康状态、偏好、风险信号、服务效果，蒸馏为不断更新的结构化画像。老人迁入其他机构或地区，档案直接跟随，新团队拿到即可继续高质量服务，无需从头了解。</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">护理员档案</div>
+        <div class="compare-value">每位护理员的技能图谱、服务评分、成长轨迹持续积累。护理员换站点或换机构，能力画像跟着走，接收方立即了解 ta 的水平和需要加强的方向。</div>
+      </div>
+    </div>
+
+    <!-- ===== Angle 5 ===== -->
     <h3>角度五：数据驱动多方决策</h3>
-    <h4>常见做法</h4>
-    <p>数据散落在不同系统，居家归居家、医院归医院，无法形成完整画像，更无法支撑决策。</p>
-    <h4>先进方案</h4>
-    <p>福寿康有服务数据积累但缺医疗数据；天与有 IoT 数据但服务场景浅。各自有一块拼图，但拼不完整。</p>
-    <h4>金色年华</h4>
-    <p>四场景数据贯通（居家+社区+机构+自有医院）+ AI 从每次服务中提取结构化洞察，形成行业最完整的老年人健康与养老服务数据库。<strong>同时服务三个决策方：</strong></p>
-    <table>
-      <thead><tr><th style="width:120px">决策方</th><th>数据回答的问题</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>→ 政府</strong></td>
-          <td>什么服务项目对哪类老人最有效？给付标准是否合理？经费花在了哪里、产生了什么效果？为政策制定提供数据底座。</td>
-        </tr>
-        <tr>
-          <td><strong>→ 护理员</strong></td>
-          <td>这位老人的具体情况是什么？历史上什么服务方式对 ta 效果最好？AI 基于数据推荐最优服务方案，让每次服务都是个性化的。</td>
-        </tr>
-        <tr>
-          <td><strong>→ 机构</strong></td>
-          <td>这位护理员有什么优势和短板？实操中需要加强什么？数据驱动的人员管理和能力建设，替代主管的主观评价。</td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="compare-block">
+      <div class="compare-header others">其他方案</div>
+      <div class="compare-row">
+        <div class="compare-label">常规实践</div>
+        <div class="compare-value">数据散落在不同系统，居家归居家、医院归医院，无法形成完整画像，更无法支撑决策。</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">较先进方案</div>
+        <div class="compare-value">福寿康有服务数据积累但缺医疗数据；天与有 IoT 数据但服务场景浅。各自有一块拼图，但拼不完整。</div>
+      </div>
+    </div>
+
+    <div class="compare-block">
+      <div class="compare-header gy">金色年华方案</div>
+      <div class="compare-row">
+        <div class="compare-label" style="height: auto;">数据基础</div>
+        <div class="compare-value">
+          <span class="hero-keyword-xs">四场景贯通 + AI 结构化洞察</span><br>
+          居家+社区+机构+自有医院数据贯通，AI 从每次服务中提取结构化洞察，形成行业最完整的老年人健康与养老服务数据库。
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">→ 政府</div>
+        <div class="compare-value">什么服务项目对哪类老人最有效？给付标准是否合理？经费花在了哪里、产生了什么效果？为政策制定提供数据底座。</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">→ 护理员</div>
+        <div class="compare-value">这位老人的具体情况是什么？历史上什么服务方式对 ta 效果最好？AI 基于数据推荐最优服务方案，让每次服务都是个性化的。</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">→ 机构</div>
+        <div class="compare-value">这位护理员有什么优势和短板？实操中需要加强什么？数据驱动的人员管理和能力建设，替代主管的主观评价。</div>
+      </div>
+    </div>
   </div>
 
   <!-- 后续板块待讨论后补充 -->
