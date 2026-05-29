@@ -3,50 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>金色年华 · 智慧养老方案叙事框架</title>
+<title>金色年华 · 智慧养老方案总览</title>
 <style>
   :root {
-    --bg: #fafaf9;
-    --card: #ffffff;
-    --text: #1c1917;
-    --muted: #78716c;
-    --accent: #0f766e;
-    --accent-light: #ccfbf1;
-    --border: #e7e5e4;
-    --green: #16a34a;
-    --green-bg: #f0fdf4;
-    --yellow: #ca8a04;
-    --yellow-bg: #fefce8;
-    --red: #dc2626;
-    --red-bg: #fef2f2;
-    --blue: #2563eb;
-    --blue-bg: #eff6ff;
-    --purple: #7c3aed;
-    --purple-bg: #f5f3ff;
-    --gold: #b45309;
-    --gold-bg: #fffbeb;
+    --bg: #fafaf9; --card: #ffffff; --text: #1c1917; --muted: #78716c;
+    --accent: #0f766e; --accent-light: #ccfbf1; --border: #e7e5e4;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    --yellow: #ca8a04; --yellow-bg: #fefce8;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --blue: #2563eb; --blue-bg: #eff6ff;
+    --purple: #7c3aed; --purple-bg: #f5f3ff;
+    --gold: #b45309; --gold-bg: #fffbeb;
   }
   html { scroll-behavior: smooth; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.75;
-    font-size: 17px;
+    background: var(--bg); color: var(--text); line-height: 1.75; font-size: 17px;
   }
   .container { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
 
-  /* Header */
   .report-header {
-    text-align: center;
-    padding: 48px 0 40px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 48px;
+    text-align: center; padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border); margin-bottom: 40px;
   }
   .report-header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
   .report-header .subtitle { font-size: 17px; color: var(--muted); }
   .report-header .meta { margin-top: 16px; font-size: 13px; color: var(--muted); }
+
+  /* Action card */
+  .action-card {
+    display: block; text-decoration: none; color: var(--text);
+    background: var(--card); border: 2px solid var(--red); border-radius: 12px;
+    padding: 28px 32px; margin-bottom: 40px; transition: box-shadow 0.2s;
+  }
+  .action-card:hover { box-shadow: 0 4px 16px rgba(220,38,38,0.12); }
+  .action-card .ac-tag {
+    display: inline-block; background: var(--red); color: white;
+    font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 4px; margin-bottom: 10px;
+  }
+  .action-card .ac-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .action-card .ac-desc { font-size: 15px; color: var(--muted); }
+  .action-card .ac-arrow { float: right; font-size: 24px; color: var(--red); margin-top: -32px; }
+
+  /* TOC */
+  .toc {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 24px 28px; margin-bottom: 48px;
+  }
+  .toc h3 {
+    font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--muted); margin-bottom: 14px;
+  }
+  .toc ol { list-style: none; padding: 0; margin: 0; }
+  .toc li { margin-bottom: 6px; }
+  .toc li a {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--text); font-size: 15.5px;
+    padding: 6px 8px; border-radius: 6px; transition: background 0.15s;
+  }
+  .toc li a:hover { background: #f5f5f4; }
+  .toc li a .toc-num {
+    display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center;
+    background: var(--accent); color: white; border-radius: 50%;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .toc li a .toc-label { flex: 1; }
+  .toc li a .toc-hint { font-size: 13px; color: var(--muted); }
 
   /* Sections */
   .section { margin-bottom: 56px; }
@@ -57,10 +80,8 @@
   }
   .section h2 { font-size: 23px; font-weight: 700; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); }
   .section h3 { font-size: 18px; font-weight: 700; margin: 24px 0 12px; }
-  .section h4 { font-size: 16px; font-weight: 700; margin: 20px 0 8px; color: var(--muted); }
   .section p { margin-bottom: 12px; color: #44403c; }
 
-  /* Tables */
   table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 15.5px; }
   thead th {
     background: #f5f5f4; padding: 10px 14px; text-align: left; font-weight: 600;
@@ -70,7 +91,6 @@
   tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
   tbody tr:last-child td { border-bottom: none; }
 
-  /* Callouts */
   .callout {
     border-left: 3px solid var(--accent); background: var(--accent-light);
     padding: 18px 22px; margin: 20px 0; border-radius: 0 6px 6px 0; font-size: 15.5px;
@@ -78,10 +98,8 @@
   .callout.gov { border-left-color: var(--red); background: var(--red-bg); }
   .callout.biz { border-left-color: var(--gold); background: var(--gold-bg); }
   .callout.tech { border-left-color: var(--purple); background: var(--purple-bg); }
-  .callout.demo { border-left-color: var(--blue); background: var(--blue-bg); }
   .callout strong { font-weight: 700; }
 
-  /* Badge */
   .badge {
     display: inline-block; padding: 2px 10px; border-radius: 12px;
     font-size: 12px; font-weight: 600; white-space: nowrap;
@@ -93,7 +111,6 @@
   .badge-wip { background: var(--yellow-bg); color: var(--yellow); }
   .badge-plan { background: #f5f5f4; color: var(--muted); }
 
-  /* Architecture blocks */
   .arch-stack { margin: 20px 0; }
   .arch-layer {
     border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px;
@@ -113,17 +130,20 @@
   .l-serve { background: #f5f5f4; } .l-serve .layer-label { color: #57534e; }
   .l-out { background: #fce7f3; } .l-out .layer-label { color: #9d174d; }
 
-  /* Flow */
   .flow {
     background: var(--card); border: 1px solid var(--border); border-radius: 8px;
     padding: 24px; margin: 20px 0 24px; font-family: "SF Mono", "Fira Code", monospace;
     font-size: 14.5px; line-height: 1.6; overflow-x: auto; white-space: pre; color: #44403c;
   }
 
-  /* Audience tags */
-  .audience-row { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .gap-row {
+    display: grid; grid-template-columns: 200px 1fr; gap: 0;
+    border-bottom: 1px solid var(--border); font-size: 15.5px;
+  }
+  .gap-row:last-child { border-bottom: none; }
+  .gap-label { padding: 10px 14px; font-weight: 600; background: #f5f5f4; border-right: 1px solid var(--border); }
+  .gap-value { padding: 10px 14px; color: #44403c; }
 
-  /* Comparison cards */
   .comparison { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0; }
   .comparison .card {
     border: 1px solid var(--border); border-radius: 8px; padding: 20px; background: var(--card);
@@ -136,55 +156,6 @@
   .comparison .card.c1 { border-top: 3px solid var(--red); }
   .comparison .card.c2 { border-top: 3px solid var(--gold); }
   .comparison .card.c3 { border-top: 3px solid var(--purple); }
-
-  /* Gap analysis rows */
-  .gap-row {
-    display: grid; grid-template-columns: 200px 1fr; gap: 0;
-    border-bottom: 1px solid var(--border); font-size: 15.5px;
-  }
-  .gap-row:last-child { border-bottom: none; }
-  .gap-label { padding: 10px 14px; font-weight: 600; background: #f5f5f4; border-right: 1px solid var(--border); }
-  .gap-value { padding: 10px 14px; color: #44403c; }
-
-  /* Numbered list */
-  .step-list { counter-reset: step; list-style: none; padding: 0; margin: 16px 0; }
-  .step-list li {
-    counter-increment: step; padding: 12px 16px 12px 48px; position: relative;
-    border-bottom: 1px solid var(--border); font-size: 15.5px;
-  }
-  .step-list li::before {
-    content: counter(step); position: absolute; left: 12px; top: 12px;
-    width: 24px; height: 24px; line-height: 24px; text-align: center;
-    background: var(--accent); color: white; border-radius: 50%; font-size: 12px; font-weight: 700;
-  }
-  .step-list li:last-child { border-bottom: none; }
-
-  /* TOC */
-  .toc {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 24px 28px; margin-bottom: 48px;
-  }
-  .toc h3 {
-    font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-    color: var(--muted); margin-bottom: 14px;
-  }
-  .toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
-  .toc li {
-    counter-increment: toc; margin-bottom: 6px;
-  }
-  .toc li a {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none; color: var(--text); font-size: 15.5px;
-    padding: 6px 8px; border-radius: 6px; transition: background 0.15s;
-  }
-  .toc li a:hover { background: #f5f5f4; }
-  .toc li a .toc-num {
-    display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center;
-    background: var(--accent); color: white; border-radius: 50%;
-    font-size: 12px; font-weight: 700; flex-shrink: 0;
-  }
-  .toc li a .toc-label { flex: 1; }
-  .toc li a .toc-hint { font-size: 13px; color: var(--muted); }
 
   @media (max-width: 640px) {
     .comparison { grid-template-columns: 1fr; }
@@ -199,50 +170,57 @@
 <div class="container">
 
   <div class="report-header">
-    <h1>金色年华 · 智慧养老方案叙事框架</h1>
-    <div class="subtitle">从"服务质量引擎"到"养老服务 Data Brain" — 方案定位、叙事逻辑与演示策略</div>
-    <div class="meta">2026年5月 · 内部工作文档</div>
+    <h1>金色年华 · 智慧养老方案总览</h1>
+    <div class="subtitle">叙事逻辑 · 驱动力 · 技术架构 · 商业化路径 — 内部参考文档</div>
+    <div class="meta">2026年5月</div>
   </div>
+
+  <!-- Action card: Gov demo -->
+  <a href="goldenyears-gov-demo.html" class="action-card">
+    <div class="ac-tag">当前重点</div>
+    <div class="ac-title">杭州市政府演示方案 →</div>
+    <div class="ac-desc">下月向杭州市政府演示。包含：行业痛点、六重证据链、方案运作、演示脚本、话术备忘。点击查看独立页面。</div>
+    <div class="ac-arrow">→</div>
+  </a>
 
   <!-- TOC -->
   <nav class="toc">
-    <h3>目录</h3>
+    <h3>参考内容目录</h3>
     <ol>
-      <li><a href="#context"><span class="toc-num">0</span><span class="toc-label">方案上下文</span><span class="toc-hint">三个听众 · 底牌 · 优先级</span></a></li>
-      <li><a href="#oneliner"><span class="toc-num">1</span><span class="toc-label">核心叙事：一句话</span><span class="toc-hint">Data Brain 概念</span></a></li>
-      <li><a href="#architecture"><span class="toc-num">2</span><span class="toc-label">完整叙事展开：四层架构</span><span class="toc-hint">感知 → AI → 数据 → 大脑</span></a></li>
+      <li><a href="#audiences"><span class="toc-num">1</span><span class="toc-label">三个听众与各自关注点</span><span class="toc-hint">政府 · 投资人 · 金色年华</span></a></li>
+      <li><a href="#assets"><span class="toc-num">2</span><span class="toc-label">金色年华的底牌</span><span class="toc-hint">已有资产与独特优势</span></a></li>
       <li><a href="#drivers"><span class="toc-num">3</span><span class="toc-label">七大驱动力 × 方案回应</span><span class="toc-hint">痛点与解法对照</span></a></li>
-      <li><a href="#ainative"><span class="toc-num">4</span><span class="toc-label">AI-Native / Agentic 定位</span><span class="toc-hint">六场景对比 · Agent 链</span></a></li>
-      <li><a href="#quality"><span class="toc-num">5</span><span class="toc-label">系统性质量管理体系</span><span class="toc-hint">已建 / 待建 / 规划</span></a></li>
-      <li><a href="#tech"><span class="toc-num">6</span><span class="toc-label">技术差异化亮点</span><span class="toc-hint">六大竞争壁垒</span></a></li>
-      <li><a href="#gov"><span class="toc-num">7</span><span class="toc-label">政府叙事：重点打法</span><span class="toc-hint">五个痛点 · 演示脚本</span></a></li>
+      <li><a href="#architecture"><span class="toc-num">4</span><span class="toc-label">技术架构全景</span><span class="toc-hint">感知 → AI → 数据 → 决策</span></a></li>
+      <li><a href="#ainative"><span class="toc-num">5</span><span class="toc-label">AI-Native 定位</span><span class="toc-hint">"用AI" vs "AI原生"</span></a></li>
+      <li><a href="#quality"><span class="toc-num">6</span><span class="toc-label">质量管理体系</span><span class="toc-hint">已建 / 待建 / 规划</span></a></li>
+      <li><a href="#tech"><span class="toc-num">7</span><span class="toc-label">技术差异化亮点</span><span class="toc-hint">七大竞争壁垒</span></a></li>
       <li><a href="#commercial"><span class="toc-num">8</span><span class="toc-label">商业化路径</span><span class="toc-hint">长护险流量 → 客户变现</span></a></li>
       <li><a href="#vision"><span class="toc-num">9</span><span class="toc-label">远景方向</span><span class="toc-hint">具身智能 · 医养Agent · SaaS</span></a></li>
-      <li><a href="#summary"><span class="toc-num">10</span><span class="toc-label">总结：叙事的三个层次</span><span class="toc-hint">下月 / 12个月 / 远景</span></a></li>
     </ol>
   </nav>
 
-  <!-- ======================== PART 0: CONTEXT ======================== -->
-  <div class="section" id="context">
-    <h2><span class="section-number">0</span>方案上下文</h2>
-
-    <h3>三个听众，一套方案</h3>
+  <!-- ====== 1: AUDIENCES ====== -->
+  <div class="section" id="audiences">
+    <h2><span class="section-number">1</span>三个听众与各自关注点</h2>
     <div class="comparison">
       <div class="card c1">
-        <h4><span class="badge badge-gov">政府 / 医保</span> 买单方</h4>
-        <p>我花的每一分长护险经费，<strong>服务到底有没有发生？质量达标了吗？</strong>我能不能审计？能不能抽查？能不能向上级交代？</p>
+        <h4><span class="badge badge-gov">政府 / 医保</span></h4>
+        <p>我花的每一分长护险经费，<strong>服务到底有没有发生？质量达标了吗？</strong>能不能审计？能不能推广？</p>
       </div>
       <div class="card c2">
-        <h4><span class="badge badge-biz">市场 / 投资人</span> 估值方</h4>
-        <p>这家公司有什么<strong>科技壁垒和平台想象空间</strong>？长护险是不赚钱的，数据和客户价值怎么变现？</p>
+        <h4><span class="badge badge-biz">市场 / 投资人</span></h4>
+        <p>这家公司有什么<strong>科技壁垒和平台想象空间</strong>？长护险不赚钱，数据和客户价值怎么变现？</p>
       </div>
       <div class="card c3">
-        <h4><span class="badge badge-tech">金色年华自身</span> 运营方</h4>
-        <p>长护险是流量入口但不赚钱。我怎么把<strong>"用完即走"变成"沉淀+转化"</strong>？怎么让每个护理员效能翻倍？</p>
+        <h4><span class="badge badge-tech">金色年华自身</span></h4>
+        <p>长护险是流量入口但不赚钱。怎么把<strong>"用完即走"变成"沉淀+转化"</strong>？怎么让护理员效能翻倍？</p>
       </div>
     </div>
+  </div>
 
-    <h3>金色年华的底牌</h3>
+  <!-- ====== 2: ASSETS ====== -->
+  <div class="section" id="assets">
+    <h2><span class="section-number">2</span>金色年华的底牌</h2>
     <table>
       <thead><tr><th>资产</th><th>详情</th><th>意味着什么</th></tr></thead>
       <tbody>
@@ -250,374 +228,145 @@
         <tr><td>全场景服务网络</td><td>机构-社区-居家三位一体，浙江多城覆盖</td><td>数据可以贯穿老人全生命周期、全场景</td></tr>
         <tr><td>长护险资质</td><td>浙江长护险定点机构</td><td>稳定的获客入口 + 政府关系基础</td></tr>
         <tr><td>行业地位</td><td>全国康养产业 TOP 10</td><td>品牌背书，政策对话资格</td></tr>
-        <tr><td>科技子公司</td><td>杭州金色年华科技（2018 年成立）</td><td>不是临时组建的，有信息化平台基础</td></tr>
+        <tr><td>科技子公司</td><td>杭州金色年华科技（2018 年成立）</td><td>有信息化平台基础，不是临时组建</td></tr>
         <tr><td><strong>AI 产品原型</strong></td><td>录音+实时引导+事后分析+质量管理闭环，五端覆盖</td><td><strong>已验证的核心能力，不是 PPT</strong></td></tr>
       </tbody>
     </table>
-
-    <h3>当前优先级</h3>
-    <div class="callout demo">
-      <strong>下月政府演示是第一里程碑。</strong>政府最关心的核心问题：<em>"你如何给我一个可审计的、我可以放心的上门服务记录？"</em><br><br>
-      整体叙事需要宏大完整，但演示切入点必须精准落在这个问题上——先用"可审计的服务记录"赢得政府信任，再展开完整平台故事。
-    </div>
   </div>
 
-  <!-- ======================== PART 1: ONE-LINER ======================== -->
-  <div class="section" id="oneliner">
-    <h2><span class="section-number">1</span>核心叙事：一句话</h2>
-
-    <div class="callout" style="font-size: 18px; text-align: center; padding: 28px;">
-      <strong>金色年华 Data Brain：</strong><br>
-      中国首个从真实服务场景中"长出来"的养老服务智能大脑。<br>
-      <span style="font-size: 15px; color: var(--muted);">以 AI 原生的方式，让每一次上门服务可感知、可引导、可审计、可进化。</span>
-    </div>
-
-    <h3>"Data Brain" 概念解释</h3>
-    <p>Data Brain 不是一个数据库，也不是一个 BI 看板。它是一个<strong>具备感知、判断、行动、学习能力的智能体系统</strong>——像人的大脑一样，通过多模态感官（录音、雷达、穿戴设备）持续感知现场，通过 AI Agent 实时做出判断和引导，通过数据沉淀持续进化。</p>
-
-    <p>对不同听众，Data Brain 的含义不同：</p>
+  <!-- ====== 3: DRIVERS ====== -->
+  <div class="section" id="drivers">
+    <h2><span class="section-number">3</span>七大驱动力 × 方案回应</h2>
     <table>
-      <thead><tr><th>听众</th><th>Data Brain 意味着</th></tr></thead>
+      <thead><tr><th style="width:40px">#</th><th style="width:200px">驱动力</th><th>痛点</th><th>方案回应</th><th>谁最关心</th></tr></thead>
       <tbody>
-        <tr><td><span class="badge badge-gov">政府</span></td><td>一个能<strong>替你"看见"每次上门服务</strong>的监管大脑——服务有没有发生、做了什么、质量如何，全部可审计</td></tr>
-        <tr><td><span class="badge badge-biz">投资人</span></td><td>一个拥有<strong>30 万+老人全生命周期数据</strong>的智能中枢——数据壁垒 + 平台化输出的想象空间</td></tr>
-        <tr><td><span class="badge badge-tech">金色年华</span></td><td>一个让<strong>护理员效能翻倍、客户持续沉淀、增值服务精准匹配</strong>的运营大脑</td></tr>
+        <tr><td>1</td><td>服务过程不可见</td><td>集团无法了解上门服务的具体过程和质量</td><td>多模态感知（工牌录音+雷达轨迹+穿戴体征）→ AI 融合分析 → 自动生成结构化服务记录</td><td><span class="badge badge-tech">金色年华</span></td></tr>
+        <tr><td>2</td><td>买单方需要可审计性</td><td>政府/保险不知道服务是否发生、是否有骗保</td><td>六重证据链交叉验证（定位+时间+声纹+录音+雷达+AI），全链路可追溯</td><td><span class="badge badge-gov">政府</span></td></tr>
+        <tr><td>3</td><td>从业人员严重不足</td><td>养老缺口巨大、经费有限</td><td>AI 实时引导让初级护理员接近高级水平；智能调度优化路径</td><td><span class="badge badge-gov">政府</span> <span class="badge badge-tech">金色年华</span></td></tr>
+        <tr><td>4</td><td>培训成本高</td><td>新员工培训消耗大量人力，与实际场景脱节</td><td>AI 实景培训：真实录音案例教学 + 模拟场景陪练 + 上岗后持续引导</td><td><span class="badge badge-tech">金色年华</span></td></tr>
+        <tr><td>5</td><td>优秀实践难以推广</td><td>需要标准化、可复制的模式才能全国推广</td><td>SOP 四层体系 + AI 自动生成执行规则，标准即代码，可一键复制到新站点</td><td><span class="badge badge-gov">政府</span></td></tr>
+        <tr><td>6</td><td>长护险流量需要变现</td><td>长护险不赚钱，客户"用完即走"</td><td>家属端订阅→建立信任→接入增值服务（健康商城/远程医疗/保险产品）</td><td><span class="badge badge-biz">投资人</span> <span class="badge badge-tech">金色年华</span></td></tr>
+        <tr><td>7</td><td>个性化服务需求</td><td>每位老人状况不同，千篇一律无法满足</td><td>基于健康档案+服务历史+实时数据，AI 生成个性化服务方案和风险预警</td><td><span class="badge badge-tech">金色年华</span> <span class="badge badge-biz">投资人</span></td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- ======================== PART 2: FULL NARRATIVE ======================== -->
+  <!-- ====== 4: ARCHITECTURE ====== -->
   <div class="section" id="architecture">
-    <h2><span class="section-number">2</span>完整叙事展开：四层架构</h2>
-
+    <h2><span class="section-number">4</span>技术架构全景</h2>
     <div class="arch-stack">
       <div class="arch-layer l-brain">
-        <div class="layer-label">第四层<br>Data Brain</div>
-        <div class="layer-content"><strong>养老服务智能大脑</strong><br>Agentic AI 贯穿全流程：培训→引导→督导→审计→回访→洞察→专家对接<br>个性化服务决策（类 Palantir）· 风险预警 · 需求预测 · 增值服务匹配</div>
+        <div class="layer-label">智能决策层</div>
+        <div class="layer-content">Agentic AI 贯穿全流程：培训→引导→督导→审计→回访→洞察→专家对接<br>个性化服务决策 · 风险预警 · 需求预测 · 增值服务匹配</div>
       </div>
       <div class="arch-layer l-data">
-        <div class="layer-label">第三层<br>健康数据中台</div>
-        <div class="layer-content"><strong>老人全生命周期数据湖</strong><br>服务记录 · 健康档案 · 行为画像 · 风险评估 · 满意度<br>打通居家-社区-机构-医院四场景数据孤岛（金色年华独有优势）</div>
+        <div class="layer-label">健康数据中台</div>
+        <div class="layer-content">老人全生命周期数据湖：服务记录 · 健康档案 · 行为画像 · 风险评估 · 满意度<br>打通居家-社区-机构-医院四场景数据孤岛（金色年华独有优势）</div>
       </div>
       <div class="arch-layer l-ai">
-        <div class="layer-label">第二层<br>AI 引擎</div>
-        <div class="layer-content"><strong>多 Agent 协同的 AI 原生能力层</strong><br>实时语音 Agent（事中引导/违规检测）· 质量评估 Agent · 报告生成 Agent<br>培训 Agent · 回访 Agent · 健康洞察 Agent · 调度优化 Agent</div>
+        <div class="layer-label">AI 引擎</div>
+        <div class="layer-content">多 Agent 协同：实时语音 Agent（事中引导/违规检测）· 质量评估 Agent · 报告生成 Agent<br>培训 Agent · 回访 Agent · 健康洞察 Agent · 调度优化 Agent</div>
       </div>
       <div class="arch-layer l-sense">
-        <div class="layer-label">第一层<br>多模态感知</div>
-        <div class="layer-content"><strong>多来源 / 多模态 · 从真实场景采集真实数据</strong><br>智能工牌（录音/定位/声纹）· 毫米波雷达（床上/床边轨迹、体征、跌倒、离床）· 穿戴设备（心率/血氧/活动量）<br>智慧家居（烟感/水浸/门磁）· 医疗数据（自有医院诊疗/用药）<br><em>不锁定单一硬件，平台兼容多厂商设备，统一接入 Data Brain</em></div>
+        <div class="layer-label">多模态感知</div>
+        <div class="layer-content">多来源 / 多模态 · 不锁定单一硬件，平台兼容多厂商设备<br>智能工牌（录音/定位/声纹）· 毫米波雷达（床上/床边轨迹、体征、跌倒）· 穿戴设备（心率/血氧）<br>智慧家居（烟感/水浸/门磁）· 医疗数据（自有医院诊疗/用药）</div>
       </div>
       <div class="arch-layer l-serve">
         <div class="layer-label">服务执行层</div>
-        <div class="layer-content"><strong>五端协同的服务操作系统</strong><br>护理员端（H5 + 工牌）· 站点运营端 · 服务主管端 · 集团质量管理端 · 家属端</div>
+        <div class="layer-content">五端协同：护理员端（H5 + 工牌）· 站点运营端 · 服务主管端 · 集团质量管理端 · 家属端</div>
       </div>
       <div class="arch-layer l-out">
         <div class="layer-label">价值输出层</div>
-        <div class="layer-content"><strong>多维度价值交付</strong><br>→ 政府：可审计服务记录 + 监管报表 + 行业标准<br>→ 家属：服务透明度 + 健康洞察 + 增值服务入口<br>→ 行业：标准化方案输出 + SaaS 赋能</div>
+        <div class="layer-content">→ 政府：可审计服务记录 + 监管报表 + 行业标准<br>→ 家属：服务透明度 + 健康洞察 + 增值服务入口<br>→ 行业：标准化方案输出 + SaaS 赋能</div>
       </div>
     </div>
-
-    <h3>为什么是"四层"而不是"一堆功能"？</h3>
-    <p>这个架构的叙事力在于<strong>自下而上的因果链</strong>：</p>
-    <div class="flow">感知层采集真实数据（不是手填的，是录音/传感器自动采集的）
-  → AI 引擎实时处理（不是事后补录的，是边做边分析的）
-    → 数据中台持续沉淀（不是用完即走的，是越用越聪明的）
-      → Data Brain 做出智能决策（不是规则引擎，是真正的 AI 判断）</div>
-    <p>每一层都解决一个核心问题，每一层都为上一层提供燃料。</p>
   </div>
 
-  <!-- ======================== PART 3: SEVEN DRIVERS ======================== -->
-  <div class="section" id="drivers">
-    <h2><span class="section-number">3</span>七大驱动力 × 方案回应</h2>
-
-    <p>以下梳理了推动金色年华做这件事的七个核心驱动力，以及方案如何逐一回应。</p>
-
-    <table>
-      <thead><tr><th style="width:40px">#</th><th style="width:220px">驱动力</th><th>痛点</th><th>Data Brain 的回应</th><th>谁最关心</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>1</strong></td>
-          <td>服务过程不可见</td>
-          <td>集团无法了解上门服务的具体过程和质量，管理和提升无从说起</td>
-          <td>多模态感知（工牌录音 + 毫米波雷达轨迹 + 穿戴体征）→ AI 融合分析 → 自动生成结构化服务记录，让每次服务"可见"</td>
-          <td><span class="badge badge-tech">金色年华</span></td>
-        </tr>
-        <tr>
-          <td><strong>2</strong></td>
-          <td>买单方需要可审计性</td>
-          <td>政府/保险不知道服务是否发生、是否达标、是否有骗保，无法建立信任</td>
-          <td>录音原始证据 + AI 合规分析 + SOP 逐项核验 + 可导出审计报告，全链路可追溯</td>
-          <td><span class="badge badge-gov">政府</span></td>
-        </tr>
-        <tr>
-          <td><strong>3</strong></td>
-          <td>从业人员严重不足</td>
-          <td>养老缺口巨大、经费有限，现有人员需要发挥更高效能</td>
-          <td>AI 实时引导让普通护理员达到优秀水平；智能调度优化服务路径和时间分配</td>
-          <td><span class="badge badge-gov">政府</span> <span class="badge badge-tech">金色年华</span></td>
-        </tr>
-        <tr>
-          <td><strong>4</strong></td>
-          <td>培训成本高</td>
-          <td>新员工培训消耗大量人力，传统培训与实际场景脱节</td>
-          <td>AI 实景培训：基于真实服务录音的案例教学 + 模拟场景 Agent 陪练 + 上岗后持续引导</td>
-          <td><span class="badge badge-tech">金色年华</span></td>
-        </tr>
-        <tr>
-          <td><strong>5</strong></td>
-          <td>优秀实践难以推广</td>
-          <td>行业/政府需要标准化、可复制的服务模式才能全国推广</td>
-          <td>SOP 四层体系（正文→督导→引导→报告）+ AI 自动生成执行规则，标准即代码，可一键复制到新站点</td>
-          <td><span class="badge badge-gov">政府</span></td>
-        </tr>
-        <tr>
-          <td><strong>6</strong></td>
-          <td>长护险流量需要变现</td>
-          <td>长护险不赚钱，客户"用完即走"，无法沉淀商业价值</td>
-          <td>家属端订阅服务（健康周报/异常告警）→ 建立信任和粘性 → 接入增值服务（健康商城/远程医疗/保险产品）</td>
-          <td><span class="badge badge-biz">投资人</span> <span class="badge badge-tech">金色年华</span></td>
-        </tr>
-        <tr>
-          <td><strong>7</strong></td>
-          <td>个性化服务需求</td>
-          <td>每位老人的身体状况、偏好、风险不同，千篇一律的服务无法满足</td>
-          <td>Data Brain 基于老人健康档案 + 服务历史 + 实时数据，自动生成个性化服务方案和风险预警</td>
-          <td><span class="badge badge-tech">金色年华</span> <span class="badge badge-biz">投资人</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- ======================== PART 4: AGENTIC AI ======================== -->
+  <!-- ====== 5: AI-NATIVE ====== -->
   <div class="section" id="ainative">
-    <h2><span class="section-number">4</span>AI-Native / Agentic 的定位：如何讲清楚</h2>
-
-    <h3>问题：怎么区分"用 AI 的养老公司" vs "AI 原生的养老公司"？</h3>
-
+    <h2><span class="section-number">5</span>AI-Native 定位：怎么讲清楚</h2>
     <div class="callout tech">
-      <strong>核心区别：</strong>传统做法是"人做完事，AI 事后检查"。AI-Native 的做法是 <strong>"AI 全程在场，与人协同完成每一个动作"</strong>。AI 不是质检工具，是<strong>共同工作的同事</strong>。
+      <strong>核心区别：</strong>传统做法是"人做完事，AI 事后检查"。AI-Native 的做法是 <strong>"AI 全程在场，与人协同完成每一个动作"</strong>。
     </div>
-
-    <h3>一张表讲清楚</h3>
     <table>
-      <thead><tr><th style="width:160px">场景</th><th>"用 AI"的做法</th><th>"AI-Native"的做法（金色年华）</th></tr></thead>
+      <thead><tr><th style="width:160px">场景</th><th>"用 AI"的做法</th><th>AI-Native 的做法（金色年华）</th></tr></thead>
       <tbody>
-        <tr>
-          <td><strong>上门服务</strong></td>
-          <td>护理员做完服务 → 手填记录 → AI 事后抽检录音</td>
-          <td>多模态自动采集（工牌录音 + 雷达轨迹 + 体征数据）→ AI <strong>实时</strong>融合分析并语音提醒 → 服务结束自动生成记录 → 零人工填写</td>
-        </tr>
-        <tr>
-          <td><strong>SOP 管理</strong></td>
-          <td>写 SOP 文档 → 培训护理员 → 靠人监督执行</td>
-          <td>主管写白话 SOP → AI <strong>自动生成</strong>督导/引导/报告三套执行规则 → 各感知终端实时执行</td>
-        </tr>
-        <tr>
-          <td><strong>新人培训</strong></td>
-          <td>课堂培训 → 考试 → 上岗</td>
-          <td>AI Agent 基于真实案例<strong>模拟服务场景</strong> → 上岗后 AI <strong>持续伴随引导</strong> → 表现数据驱动个性化提升</td>
-        </tr>
-        <tr>
-          <td><strong>质量管理</strong></td>
-          <td>管理层看报表 → 发现问题 → 人工跟进</td>
-          <td>Data Brain <strong>自动识别</strong>质量偏差 → 推送根因分析 → <strong>自动派发</strong>纠正动作 → 追踪改进效果</td>
-        </tr>
-        <tr>
-          <td><strong>家属沟通</strong></td>
-          <td>家属打电话问 → 客服回复</td>
-          <td>AI <strong>自动生成</strong>脱敏服务报告 → 按订阅频率推送 → 家属可直接<strong>对话 AI</strong> 查询老人近况</td>
-        </tr>
-        <tr>
-          <td><strong>数据使用</strong></td>
-          <td>数据存着 → 需要时人工分析</td>
-          <td>多个 AI Agent <strong>7×24 持续分析</strong>数据流 → 主动发现异常/趋势/机会 → 推送决策建议</td>
-        </tr>
+        <tr><td><strong>上门服务</strong></td><td>护理员做完 → 手填记录 → AI 事后抽检</td><td>多模态自动采集 → AI 实时融合分析并语音提醒 → 自动生成记录 → 零人工填写</td></tr>
+        <tr><td><strong>SOP 管理</strong></td><td>写文档 → 培训 → 靠人监督</td><td>主管写白话 SOP → AI 自动生成督导/引导/报告三套执行规则 → 各终端实时执行</td></tr>
+        <tr><td><strong>新人培训</strong></td><td>课堂培训 → 考试 → 上岗</td><td>AI 模拟真实场景陪练 → 上岗后持续伴随引导 → 数据驱动个性化提升</td></tr>
+        <tr><td><strong>质量管理</strong></td><td>管理层看报表 → 人工跟进</td><td>AI 自动识别偏差 → 推送根因 → 自动派发纠正动作 → 追踪改进效果</td></tr>
+        <tr><td><strong>家属沟通</strong></td><td>家属打电话 → 客服回复</td><td>AI 自动生成脱敏服务报告 → 按订阅推送 → 家属可对话 AI 查询</td></tr>
       </tbody>
     </table>
 
-    <h3>Agentic 全流程：七个 Agent 串联一条链</h3>
-
-    <div class="flow">培训 Agent ──→ 引导 Agent ──→ 督导 Agent ──→ 审计 Agent ──→ 回访 Agent ──→ 洞察 Agent ──→ 专家对接 Agent
-   │              │              │              │              │              │              │
-   新人入职       服务进行中     服务进行中     服务结束后     定期回访       持续运行       按需触发
-   模拟训练       实时提醒       违规检测       自动生成       满意度采集     趋势/风险      远程医疗
-   案例教学       步骤引导       合规核验       审计报告       需求挖掘       需求预测       专科转介</div>
-
-    <p>这不是七个独立工具，而是<strong>一条由数据驱动的 Agent 链</strong>。每个 Agent 的输出是下一个 Agent 的输入。督导 Agent 发现的问题会反馈给培训 Agent 优化训练内容；回访 Agent 采集的满意度会输入洞察 Agent 调整服务方案。<strong>系统在持续自我进化。</strong></p>
-
-    <h3>给政府的讲法</h3>
-    <div class="callout gov">
-      <strong>不需要讲"Agentic AI"。</strong>对政府说：<br><br>
-      "我们给每位护理员配了一个 <strong>AI 助手</strong>，它能做三件事：<strong>服务时提醒护理员该做什么</strong>（引导），<strong>发现做错了立刻纠正</strong>（督导），<strong>服务结束后自动写好一份完整的服务报告</strong>（审计）。政府可以随时调取任何一次服务的原始录音和 AI 分析报告。"
-    </div>
+    <h3>七个 Agent 的全流程链</h3>
+    <div class="flow">培训 Agent → 引导 Agent → 督导 Agent → 审计 Agent → 回访 Agent → 洞察 Agent → 专家对接 Agent
+   │            │            │            │            │            │            │
+   新人入职     服务进行中   服务进行中   服务结束后   定期回访     持续运行     按需触发
+   模拟训练     实时提醒     违规检测     自动生成     满意度采集   趋势/风险    远程医疗
+   案例教学     步骤引导     合规核验     审计报告     需求挖掘     需求预测     专科转介</div>
+    <p>每个 Agent 的输出是下一个的输入。督导 Agent 发现的问题会反馈给培训 Agent 优化训练内容；回访 Agent 采集的满意度会输入洞察 Agent 调整服务方案。<strong>系统持续自我进化。</strong></p>
   </div>
 
-  <!-- ======================== PART 5: QUALITY SYSTEM ======================== -->
+  <!-- ====== 6: QUALITY ====== -->
   <div class="section" id="quality">
-    <h2><span class="section-number">5</span>系统性质量管理体系</h2>
-
-    <h3>已建成 vs 待建设</h3>
+    <h2><span class="section-number">6</span>质量管理体系</h2>
     <table>
-      <thead><tr><th style="width:250px">质量管理要素</th><th style="width:80px">状态</th><th>说明</th></tr></thead>
+      <thead><tr><th style="width:250px">要素</th><th style="width:80px">状态</th><th>说明</th></tr></thead>
       <tbody>
-        <tr>
-          <td>SOP 标准定义与版本管理</td>
-          <td><span class="badge badge-done">已建</span></td>
-          <td>四层 SOP 体系（正文/督导/引导/报告），AI 自动生成执行规则</td>
-        </tr>
-        <tr>
-          <td>实时偏差检测与纠正</td>
-          <td><span class="badge badge-done">已建</span></td>
-          <td>录音 → ASR → AI 实时违规检测 → TTS 语音提醒（~90% 准确率）</td>
-        </tr>
-        <tr>
-          <td>服务记录自动生成与审核</td>
-          <td><span class="badge badge-done">已建</span></td>
-          <td>AI 自动生成结构化记录 → SOP 逐项合规核验 → 人工复核工作流</td>
-        </tr>
-        <tr>
-          <td>多层级绩效评价</td>
-          <td><span class="badge badge-done">已建</span></td>
-          <td>护理员（S/A/B/C/D 五级）+ 站点 + 区域，趋势追踪</td>
-        </tr>
-        <tr>
-          <td>跨站点 KPI 看板</td>
-          <td><span class="badge badge-done">已建</span></td>
-          <td>服务量、完成率、异常率、复核率、家属订阅率</td>
-        </tr>
-        <tr>
-          <td>可审计导出</td>
-          <td><span class="badge badge-done">已建</span></td>
-          <td>服务记录 + 原始录音 + AI 分析 → 导出审计报告（含审计轨迹）</td>
-        </tr>
-        <tr>
-          <td>持续改进闭环（PDCA）</td>
-          <td><span class="badge badge-wip">待建</span></td>
-          <td>问题 → 根因分析 → 针对性培训 → 复测验证。需要增加 corrective action 追踪模块</td>
-        </tr>
-        <tr>
-          <td>客户满意度量化</td>
-          <td><span class="badge badge-wip">待建</span></td>
-          <td>需增加回访 Agent：服务后自动回访 → 结构化满意度采集 → 纳入质量评分</td>
-        </tr>
-        <tr>
-          <td>AI 实景培训</td>
-          <td><span class="badge badge-wip">待建</span></td>
-          <td>培训 Agent：基于真实录音案例库 → 场景模拟 → 上岗后持续伴随引导 → 表现驱动个性化提升路径</td>
-        </tr>
-        <tr>
-          <td>外部标准对接</td>
-          <td><span class="badge badge-plan">规划</span></td>
-          <td>SOP 体系与国家/浙江省养老服务标准映射 → 合规自检 → 认证辅助</td>
-        </tr>
-        <tr>
-          <td>多模态数据融合</td>
-          <td><span class="badge badge-plan">规划</span></td>
-          <td>录音之外接入毫米波雷达、穿戴设备、智慧家居 → 构建全维度老人画像</td>
-        </tr>
+        <tr><td>SOP 标准定义与版本管理</td><td><span class="badge badge-done">已建</span></td><td>四层 SOP（正文/督导/引导/报告），AI 自动生成执行规则</td></tr>
+        <tr><td>实时偏差检测与纠正</td><td><span class="badge badge-done">已建</span></td><td>录音 → ASR → AI 实时违规检测 → TTS 语音提醒</td></tr>
+        <tr><td>服务记录自动生成与审核</td><td><span class="badge badge-done">已建</span></td><td>AI 自动生成结构化记录 → SOP 逐项合规核验 → 人工复核工作流</td></tr>
+        <tr><td>多层级绩效评价</td><td><span class="badge badge-done">已建</span></td><td>护理员（S/A/B/C/D 五级）+ 站点 + 区域，趋势追踪</td></tr>
+        <tr><td>跨站点 KPI 看板</td><td><span class="badge badge-done">已建</span></td><td>服务量、完成率、异常率、复核率、家属订阅率</td></tr>
+        <tr><td>可审计导出</td><td><span class="badge badge-done">已建</span></td><td>服务记录 + 原始录音 + AI 分析 → 导出审计报告（含审计轨迹）</td></tr>
+        <tr><td>持续改进闭环（PDCA）</td><td><span class="badge badge-wip">待建</span></td><td>问题→根因分析→针对性培训→复测验证，需增加 corrective action 追踪</td></tr>
+        <tr><td>客户满意度量化</td><td><span class="badge badge-wip">待建</span></td><td>回访 Agent：服务后自动回访→结构化满意度采集→纳入质量评分</td></tr>
+        <tr><td>AI 实景培训</td><td><span class="badge badge-wip">待建</span></td><td>培训 Agent：真实录音案例库→场景模拟→持续伴随引导→个性化提升路径</td></tr>
+        <tr><td>外部标准对接</td><td><span class="badge badge-plan">规划</span></td><td>SOP 体系与国家/浙江省养老服务标准映射→合规自检→认证辅助</td></tr>
+        <tr><td>多模态数据融合</td><td><span class="badge badge-plan">规划</span></td><td>录音之外接入毫米波雷达、穿戴设备、智慧家居→全维度老人画像</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- ======================== PART 6: TECH DIFFERENTIATORS ======================== -->
+  <!-- ====== 7: TECH DIFFERENTIATORS ====== -->
   <div class="section" id="tech">
-    <h2><span class="section-number">6</span>技术差异化亮点</h2>
-
-    <h3>vs 福寿康 / 天与 / 行业通用方案</h3>
-
+    <h2><span class="section-number">7</span>技术差异化亮点</h2>
     <div style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 16px 0;">
       <div class="gap-row">
         <div class="gap-label">语音是第一公民</div>
-        <div class="gap-value">行业普遍用 IoT 硬件（雷达/传感器）作为数据入口。金色年华以<strong>语音/对话</strong>作为核心模态——语音天然承载最丰富的服务信息（做了什么、说了什么、情绪如何、老人反馈如何），是唯一能同时支撑质控、审计、培训、洞察的数据源。硬件是辅助，语音是灵魂</div>
+        <div class="gap-value">行业普遍用 IoT 硬件作为数据入口。金色年华以<strong>语音/对话</strong>作为核心模态——语音天然承载最丰富的服务信息，是唯一能同时支撑质控、审计、培训、洞察的数据源</div>
       </div>
       <div class="gap-row">
         <div class="gap-label">声纹双向身份锁定</div>
-        <div class="gap-value">行业依赖 GPS 打卡或人脸识别（易伪造、需额外设备）。金色年华通过录音自然采集声纹，<strong>自动识别"谁在服务"和"谁被服务"</strong>——护理员和老人的身份同时锁定，无需额外操作。这是防骗保的杀手级能力：人去没去、是不是本人、老人在不在场，声纹一次性解决</div>
+        <div class="gap-value">录音自然采集声纹，<strong>自动识别"谁在服务"和"谁被服务"</strong>——无需额外操作。防骗保的杀手级能力</div>
       </div>
       <div class="gap-row">
         <div class="gap-label">事中 AI，不是事后 AI</div>
-        <div class="gap-value">福寿康的 AI 质检是事后录音审核（发现问题已经晚了）。金色年华的 AI <strong>在服务进行中实时介入</strong>：违规即时提醒，遗漏步骤即时补全。不是监控，是<strong>实时教练</strong></div>
+        <div class="gap-value">AI <strong>在服务进行中实时介入</strong>：违规即时提醒，遗漏步骤即时补全。不是监控，是<strong>实时教练</strong></div>
       </div>
       <div class="gap-row">
         <div class="gap-label">SOP 即代码</div>
-        <div class="gap-value">主管用自然语言写 SOP → 系统自动生成四套 AI prompt（督导/引导/报告/培训）。SOP 不是挂在墙上的文件，而是<strong>直接驱动 AI 行为的可执行指令</strong>。更新 SOP = 更新所有护理员的 AI 助手行为。标准化从"培训人记住"变成"让 AI 执行"</div>
+        <div class="gap-value">主管写白话 SOP → 系统自动生成四套 AI prompt。更新 SOP = 更新所有护理员的 AI 助手行为</div>
       </div>
       <div class="gap-row">
-        <div class="gap-label">零人工填写</div>
-        <div class="gap-value">护理员无需手动填写任何记录。工牌录音 + 毫米波雷达（床上/床边护理轨迹）+ 穿戴体征数据，<strong>多源数据自动融合</strong>，AI 生成完整服务记录。同行仍依赖护理员手动填写或拍照打卡。信息完整度和真实度质的飞跃</div>
+        <div class="gap-label">多源零人工填写</div>
+        <div class="gap-value">工牌录音+毫米波雷达（床上/床边轨迹）+穿戴体征，<strong>多源数据自动融合</strong>，AI 生成完整服务记录</div>
       </div>
       <div class="gap-row">
         <div class="gap-label">四场景数据贯通</div>
-        <div class="gap-value">金色年华同时拥有居家、社区、机构、医院四个场景。Data Brain 可以做到：居家服务发现异常 → 调取医院诊疗记录 → 触发社区跟进 → 必要时安排机构入住。这是<strong>纯居家或纯科技公司做不到的</strong></div>
+        <div class="gap-value">居家、社区、机构、医院四个场景数据打通。居家发现异常→调取医院记录→触发社区跟进。<strong>纯居家或纯科技公司做不到</strong></div>
       </div>
       <div class="gap-row">
         <div class="gap-label">Agent 链，不是单点工具</div>
-        <div class="gap-value">七个 AI Agent 串联成闭环（培训→引导→督导→审计→回访→洞察→专家），每个 Agent 的输出是下一个的输入，<strong>系统持续自我进化</strong>。同行的 AI 应用是孤立的单点功能</div>
+        <div class="gap-value">七个 AI Agent 串联成闭环，每个 Agent 的输出是下一个的输入，<strong>系统持续自我进化</strong></div>
       </div>
     </div>
   </div>
 
-  <!-- ======================== PART 7: GOVERNMENT PITCH ======================== -->
-  <div class="section" id="gov">
-    <h2><span class="section-number">7</span>政府叙事：重点打法</h2>
-
-    <h3>政府的五个痛点 × 我们的回应</h3>
-    <table>
-      <thead><tr><th style="width:40px">#</th><th style="width:200px">政府痛点</th><th>金色年华方案如何回应</th></tr></thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td><strong>看不见服务过程</strong><br>钱花了，服务到底做没做？</td>
-          <td>每次上门服务全程录音 + AI 自动生成结构化记录。政府可随时调取<strong>原始录音 + AI 分析报告 + SOP 合规核验结果</strong>。不是护理员自己说做了就做了</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td><strong>骗保风险</strong><br>服务对象是不是真的需要？服务是不是真的发生了？</td>
-          <td>多模态交叉验证：<strong>GPS 定位（去没去）+ 时间戳（待了多久）+ 声纹识别（谁在服务、谁被服务）+ 录音内容 + 雷达轨迹（做了什么动作）+ AI 综合验证（是否符合 SOP）</strong>。六重证据链，多源交叉，造假成本极高</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td><strong>人不够用</strong><br>养老服务缺口大，经费有限</td>
-          <td>AI 实时引导让<strong>初级护理员接近高级水平</strong>，相当于给每个护理员配了一个随身导师。同时 AI 优化排班路径，减少无效通勤时间</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td><strong>标准难落地</strong><br>国家标准写了很多，一线执行靠自觉</td>
-          <td><strong>SOP 即代码</strong>——把国家/省级标准转化为 AI 可执行的督导规则，通过工牌语音 + 雷达行为分析实时执行。标准从"培训一次"变成"每次服务都在执行"</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td><strong>模式需要可复制</strong><br>浙江试点成功了，怎么推广到全国？</td>
-          <td>SOP + AI 规则 + 质量管理体系 = <strong>可打包输出的标准化方案</strong>。新站点导入后，AI 立即按照标准执行，不依赖"老带新"的人传人模式</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>政府演示的核心叙事线</h3>
-    <div class="callout demo">
-      <strong>演示建议的故事线（30 分钟版本）：</strong>
-      <ol class="step-list">
-        <li><strong>痛点共鸣</strong>（3 分钟）：长护险经费每年 XX 亿，但政府对服务过程"两眼一抹黑"。当前的打卡/拍照核验形同虚设。行业人员缺口 XX 万。</li>
-        <li><strong>方案概览</strong>（2 分钟）：金色年华 Data Brain——让每次上门服务可感知、可引导、可审计。核心：多模态感知（工牌录音 + 毫米波雷达 + 穿戴设备）→ AI 融合分析 → 自动生成可审计记录。</li>
-        <li><strong>现场演示</strong>（15 分钟）：<br>
-          ① 护理员进入老人家中 → 工牌开始录音、床边雷达自动感知人员活动<br>
-          ② 声纹自动识别：确认护理员身份 + 识别被服务老人身份（双向身份锁定）<br>
-          ③ 雷达捕捉床上/床边护理动作轨迹，与录音内容交叉验证<br>
-          ④ AI 检测到遗漏步骤 → 工牌语音提醒 → 护理员补充<br>
-          ⑤ 服务结束 → 系统自动融合多源数据生成结构化服务记录 → SOP 逐项核验<br>
-          ⑥ 切换到政府监管视角 → 调取完整审计报告（声纹+定位+录音+雷达轨迹+AI分析+SOP合规）<br>
-          ⑦ 切换到集团质量看板 → 跨站点数据一览</li>
-        <li><strong>金色年华实际数据</strong>（3 分钟）：浙江 XX 个站点已试运行，服务合规率从 XX% 提升至 XX%，异常发现时间从 XX 天缩短至实时。</li>
-        <li><strong>更大的图景</strong>（5 分钟）：从质控到培训、到健康数据中台、到个性化服务、到行业标准输出。金色年华作为浙江标杆，为全国长护险监管提供可复制的范式。</li>
-        <li><strong>Ask</strong>（2 分钟）：希望获得的政策支持/试点资格/推广合作。</li>
-      </ol>
-    </div>
-  </div>
-
-  <!-- ======================== PART 8: COMMERCIALIZATION ======================== -->
+  <!-- ====== 8: COMMERCIAL ====== -->
   <div class="section" id="commercial">
     <h2><span class="section-number">8</span>商业化路径：从长护险流量到客户变现</h2>
-
     <div class="flow">长护险服务（不赚钱，但带来稳定的老人 + 家属流量）
   → 家属端订阅（服务报告/健康周报/异常告警 → 建立信任和使用习惯）
     → 数据沉淀（老人健康画像 + 服务历史 + 需求预测）
@@ -625,82 +374,31 @@
          ├── 自有服务升级（24h 专护、陪诊、适老化改造等）
          ├── 第三方接入（健康商城/京东健康/美团买药/保险产品）
          └── 数据价值（脱敏后的群体洞察 → 保险精算/药企研究/政策制定）</div>
-
-    <h3>家属端是关键枢纽</h3>
-    <p>长护险的服务对象是老人，但<strong>消费决策者是家属</strong>。家属端从"看服务报告"起步，逐步演变为：</p>
+    <h3>家属端四阶段演进</h3>
     <table>
       <thead><tr><th>阶段</th><th>家属端功能</th><th>商业价值</th></tr></thead>
       <tbody>
         <tr><td>1. 信任建立</td><td>服务报告推送、健康周报、异常告警</td><td>留存率、打开率（流量指标）</td></tr>
         <tr><td>2. 习惯养成</td><td>AI 对话查询老人近况、历史趋势</td><td>DAU、使用时长（粘性指标）</td></tr>
-        <tr><td>3. 需求激发</td><td>Data Brain 基于数据主动推荐："您母亲最近睡眠质量下降，建议..."</td><td>转化率（商业指标）</td></tr>
+        <tr><td>3. 需求激发</td><td>基于数据主动推荐："您母亲最近睡眠质量下降，建议..."</td><td>转化率（商业指标）</td></tr>
         <tr><td>4. 交易闭环</td><td>一键购买增值服务/第三方产品</td><td>GMV / 佣金收入</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- ======================== PART 9: FUTURE VISION ======================== -->
+  <!-- ====== 9: VISION ====== -->
   <div class="section" id="vision">
-    <h2><span class="section-number">9</span>远景方向（可以"吹嘘"的大方向）</h2>
-
+    <h2><span class="section-number">9</span>远景方向</h2>
     <table>
-      <thead><tr><th style="width:180px">方向</th><th>叙事</th><th>时间跨度</th></tr></thead>
+      <thead><tr><th style="width:180px">方向</th><th>叙事</th><th style="width:80px">时间</th></tr></thead>
       <tbody>
-        <tr>
-          <td><strong>具身智能</strong></td>
-          <td>从 AI 语音助手到<strong>护理机器人</strong>：Data Brain 积累的服务 SOP、老人偏好、环境数据，未来可以直接驱动具身智能体执行基础护理任务（辅助翻身、送药、陪伴对话）。金色年华的数据是训练养老机器人的最佳语料</td>
-          <td>3-5 年</td>
-        </tr>
-        <tr>
-          <td><strong>医养 Agent</strong></td>
-          <td>打通医院 + 居家数据后，可以构建<strong>老人的私人健康 Agent</strong>：持续监测体征 → 异常预警 → 自动预约就医 → 诊后康复方案 → 居家执行 → 效果追踪。金色年华有自有医院，这条链路可以闭环</td>
-          <td>1-2 年</td>
-        </tr>
-        <tr>
-          <td><strong>行业标准输出</strong></td>
-          <td>金色年华的 SOP 四层体系 + AI 执行规则 + 质量管理框架，可以作为<strong>浙江乃至全国的养老服务数字化标准</strong>输出。从"服务提供商"变为"标准制定者"</td>
-          <td>1-2 年</td>
-        </tr>
-        <tr>
-          <td><strong>SaaS 平台化</strong></td>
-          <td>把 Data Brain 的能力以<strong>SaaS 模式</strong>开放给其他养老机构：多模态感知方案 + AI 引擎 + 质量管理系统打包输出。参考天与的松椿果平台，但金色年华有更深的服务验证</td>
-          <td>2-3 年</td>
-        </tr>
-        <tr>
-          <td><strong>保险科技</strong></td>
-          <td>Data Brain 沉淀的老人健康数据 + 服务数据 + 风险评估模型，可以为<strong>商业长护险精算定价</strong>提供底层数据支撑。从"被保险公司评估"变为"帮保险公司评估"</td>
-          <td>2-3 年</td>
-        </tr>
+        <tr><td><strong>医养 Agent</strong></td><td>打通医院+居家数据 → 老人私人健康 Agent：持续监测→异常预警→自动预约→诊后康复→居家执行→效果追踪。金色年华有自有医院，链路可闭环</td><td>1-2 年</td></tr>
+        <tr><td><strong>行业标准输出</strong></td><td>SOP 四层体系+AI 执行规则+质量管理框架，作为浙江乃至全国养老服务数字化标准输出</td><td>1-2 年</td></tr>
+        <tr><td><strong>SaaS 平台化</strong></td><td>多模态感知方案+AI 引擎+质量管理系统打包 SaaS 输出给其他养老机构</td><td>2-3 年</td></tr>
+        <tr><td><strong>具身智能</strong></td><td>积累的服务 SOP、老人偏好、环境数据，未来可驱动护理机器人执行基础任务。金色年华的数据是训练养老机器人的最佳语料</td><td>3-5 年</td></tr>
+        <tr><td><strong>保险科技</strong></td><td>健康数据+服务数据+风险评估模型 → 为商业长护险精算定价提供底层数据</td><td>2-3 年</td></tr>
       </tbody>
     </table>
-  </div>
-
-  <!-- ======================== PART 10: SUMMARY ======================== -->
-  <div class="section" id="summary">
-    <h2><span class="section-number">10</span>总结：叙事的三个层次</h2>
-
-    <div class="arch-stack">
-      <div class="arch-layer" style="background: var(--red-bg);">
-        <div class="layer-label" style="color: var(--red); width: 160px;">下月演示<br>（立即可讲）</div>
-        <div class="layer-content"><strong>"让每次上门服务可审计"</strong><br>多模态感知（工牌录音+雷达轨迹+穿戴体征）→ AI 融合分析/实时引导 → 自动生成审计级服务记录 → 政府随时可调取<br>核心信息：六重证据链（定位+时间+声纹身份+录音+雷达轨迹+AI 验证），多源交叉，监管可信赖</div>
-      </div>
-      <div class="arch-layer" style="background: var(--gold-bg);">
-        <div class="layer-label" style="color: var(--gold); width: 160px;">12个月内<br>（平台故事）</div>
-        <div class="layer-content"><strong>"养老服务的 Data Brain"</strong><br>从质控扩展到：AI 培训 + 多模态感知 + 健康数据中台 + 个性化服务 + 家属端生态<br>核心信息：从真实场景长出来的 AI，不是贴上去的；全场景数据贯通，竞对做不到</div>
-      </div>
-      <div class="arch-layer" style="background: var(--purple-bg);">
-        <div class="layer-label" style="color: var(--purple); width: 160px;">远景<br>（想象空间）</div>
-        <div class="layer-content"><strong>"养老行业的操作系统"</strong><br>行业标准输出 + SaaS 平台化 + 具身智能 + 医养 Agent + 保险科技<br>核心信息：Data Brain 的数据是未来养老机器人的训练语料，金色年华是数据拥有者</div>
-      </div>
-    </div>
-
-    <div class="callout" style="font-size: 16px; margin-top: 32px;">
-      <strong>叙事的底层逻辑：</strong><br><br>
-      金色年华不是在"AI 浪潮中给养老业务贴标签"。<br><br>
-      金色年华是全国唯一同时拥有 <strong>CCRC + 医院 + 社区 + 居家 + 长护险</strong> 全场景的养老集团，并且从最核心的服务场景（上门护理）中，用 AI-Native 的方式"长出"了一个 Data Brain。<br><br>
-      <strong>场景是真的，数据是真的，AI 能力是从真实需求中训练出来的。</strong><br>
-      这是和所有"买硬件贴 AI 标签"的竞争对手的根本区别。
-    </div>
   </div>
 
 </div>
