@@ -305,7 +305,7 @@
       </div>
       <div class="arch-layer l-sense">
         <div class="layer-label">第一层<br>多模态感知</div>
-        <div class="layer-content"><strong>从真实场景采集真实数据</strong><br>智能工牌（录音/定位）· 毫米波雷达（体征/跌倒/离床）· 穿戴设备（心率/血氧）<br>智慧家居（烟感/水浸/门磁）· 医疗数据（自有医院诊疗/用药）</div>
+        <div class="layer-content"><strong>多来源 / 多模态 · 从真实场景采集真实数据</strong><br>智能工牌（录音/定位/声纹）· 毫米波雷达（床上/床边轨迹、体征、跌倒、离床）· 穿戴设备（心率/血氧/活动量）<br>智慧家居（烟感/水浸/门磁）· 医疗数据（自有医院诊疗/用药）<br><em>不锁定单一硬件，平台兼容多厂商设备，统一接入 Data Brain</em></div>
       </div>
       <div class="arch-layer l-serve">
         <div class="layer-label">服务执行层</div>
@@ -339,7 +339,7 @@
           <td><strong>1</strong></td>
           <td>服务过程不可见</td>
           <td>集团无法了解上门服务的具体过程和质量，管理和提升无从说起</td>
-          <td>智能工牌录音 + ASR 实时转写 + AI 自动生成结构化服务记录，让每次服务"可见"</td>
+          <td>多模态感知（工牌录音 + 毫米波雷达轨迹 + 穿戴体征）→ AI 融合分析 → 自动生成结构化服务记录，让每次服务"可见"</td>
           <td><span class="badge badge-tech">金色年华</span></td>
         </tr>
         <tr>
@@ -405,12 +405,12 @@
         <tr>
           <td><strong>上门服务</strong></td>
           <td>护理员做完服务 → 手填记录 → AI 事后抽检录音</td>
-          <td>工牌自动录音 → AI <strong>实时</strong>检测违规并语音提醒 → 服务结束自动生成记录 → 零人工填写</td>
+          <td>多模态自动采集（工牌录音 + 雷达轨迹 + 体征数据）→ AI <strong>实时</strong>融合分析并语音提醒 → 服务结束自动生成记录 → 零人工填写</td>
         </tr>
         <tr>
           <td><strong>SOP 管理</strong></td>
           <td>写 SOP 文档 → 培训护理员 → 靠人监督执行</td>
-          <td>主管写白话 SOP → AI <strong>自动生成</strong>督导/引导/报告三套执行规则 → 工牌端实时执行</td>
+          <td>主管写白话 SOP → AI <strong>自动生成</strong>督导/引导/报告三套执行规则 → 各感知终端实时执行</td>
         </tr>
         <tr>
           <td><strong>新人培训</strong></td>
@@ -544,7 +544,7 @@
       </div>
       <div class="gap-row">
         <div class="gap-label">零人工填写</div>
-        <div class="gap-value">护理员全程<strong>只需按一个按钮</strong>（工牌开始/结束录音），服务记录由 AI 自动生成。同行仍依赖护理员手动填写或拍照打卡。信息完整度和真实度质的飞跃</div>
+        <div class="gap-value">护理员无需手动填写任何记录。工牌录音 + 毫米波雷达（床上/床边护理轨迹）+ 穿戴体征数据，<strong>多源数据自动融合</strong>，AI 生成完整服务记录。同行仍依赖护理员手动填写或拍照打卡。信息完整度和真实度质的飞跃</div>
       </div>
       <div class="gap-row">
         <div class="gap-label">四场景数据贯通</div>
@@ -573,7 +573,7 @@
         <tr>
           <td>2</td>
           <td><strong>骗保风险</strong><br>服务对象是不是真的需要？服务是不是真的发生了？</td>
-          <td>智能工牌自动记录：<strong>GPS 定位（去没去）+ 时间戳（待了多久）+ 声纹识别（谁在服务、谁被服务）+ 录音内容（做了什么）+ AI 验证（是否符合 SOP）</strong>。五重证据链，造假成本极高</td>
+          <td>多模态交叉验证：<strong>GPS 定位（去没去）+ 时间戳（待了多久）+ 声纹识别（谁在服务、谁被服务）+ 录音内容 + 雷达轨迹（做了什么动作）+ AI 综合验证（是否符合 SOP）</strong>。六重证据链，多源交叉，造假成本极高</td>
         </tr>
         <tr>
           <td>3</td>
@@ -583,7 +583,7 @@
         <tr>
           <td>4</td>
           <td><strong>标准难落地</strong><br>国家标准写了很多，一线执行靠自觉</td>
-          <td><strong>SOP 即代码</strong>——把国家/省级标准转化为 AI 可执行的督导规则，工牌端实时执行。标准从"培训一次"变成"每次服务都在执行"</td>
+          <td><strong>SOP 即代码</strong>——把国家/省级标准转化为 AI 可执行的督导规则，通过工牌语音 + 雷达行为分析实时执行。标准从"培训一次"变成"每次服务都在执行"</td>
         </tr>
         <tr>
           <td>5</td>
@@ -598,14 +598,15 @@
       <strong>演示建议的故事线（30 分钟版本）：</strong>
       <ol class="step-list">
         <li><strong>痛点共鸣</strong>（3 分钟）：长护险经费每年 XX 亿，但政府对服务过程"两眼一抹黑"。当前的打卡/拍照核验形同虚设。行业人员缺口 XX 万。</li>
-        <li><strong>方案概览</strong>（2 分钟）：金色年华 Data Brain——让每次上门服务可感知、可引导、可审计。核心：智能工牌 + AI 实时引导 + 自动生成可审计记录。</li>
+        <li><strong>方案概览</strong>（2 分钟）：金色年华 Data Brain——让每次上门服务可感知、可引导、可审计。核心：多模态感知（工牌录音 + 毫米波雷达 + 穿戴设备）→ AI 融合分析 → 自动生成可审计记录。</li>
         <li><strong>现场演示</strong>（15 分钟）：<br>
-          ① 护理员按下工牌 → 开始服务 → 屏幕实时显示 ASR 转写<br>
+          ① 护理员进入老人家中 → 工牌开始录音、床边雷达自动感知人员活动<br>
           ② 声纹自动识别：确认护理员身份 + 识别被服务老人身份（双向身份锁定）<br>
-          ③ AI 检测到遗漏步骤 → 工牌语音提醒 → 护理员补充<br>
-          ④ 服务结束 → 系统自动生成结构化服务记录 → SOP 逐项核验<br>
-          ⑤ 切换到政府监管视角 → 调取某次服务的完整审计报告（声纹身份+录音+转写+AI分析+SOP合规）<br>
-          ⑥ 切换到集团质量看板 → 跨站点数据一览</li>
+          ③ 雷达捕捉床上/床边护理动作轨迹，与录音内容交叉验证<br>
+          ④ AI 检测到遗漏步骤 → 工牌语音提醒 → 护理员补充<br>
+          ⑤ 服务结束 → 系统自动融合多源数据生成结构化服务记录 → SOP 逐项核验<br>
+          ⑥ 切换到政府监管视角 → 调取完整审计报告（声纹+定位+录音+雷达轨迹+AI分析+SOP合规）<br>
+          ⑦ 切换到集团质量看板 → 跨站点数据一览</li>
         <li><strong>金色年华实际数据</strong>（3 分钟）：浙江 XX 个站点已试运行，服务合规率从 XX% 提升至 XX%，异常发现时间从 XX 天缩短至实时。</li>
         <li><strong>更大的图景</strong>（5 分钟）：从质控到培训、到健康数据中台、到个性化服务、到行业标准输出。金色年华作为浙江标杆，为全国长护险监管提供可复制的范式。</li>
         <li><strong>Ask</strong>（2 分钟）：希望获得的政策支持/试点资格/推广合作。</li>
@@ -662,7 +663,7 @@
         </tr>
         <tr>
           <td><strong>SaaS 平台化</strong></td>
-          <td>把 Data Brain 的能力以<strong>SaaS 模式</strong>开放给其他养老机构：智能工牌 + AI 引擎 + 质量管理系统打包输出。参考天与的松椿果平台，但金色年华有更深的服务验证</td>
+          <td>把 Data Brain 的能力以<strong>SaaS 模式</strong>开放给其他养老机构：多模态感知方案 + AI 引擎 + 质量管理系统打包输出。参考天与的松椿果平台，但金色年华有更深的服务验证</td>
           <td>2-3 年</td>
         </tr>
         <tr>
@@ -681,7 +682,7 @@
     <div class="arch-stack">
       <div class="arch-layer" style="background: var(--red-bg);">
         <div class="layer-label" style="color: var(--red); width: 160px;">下月演示<br>（立即可讲）</div>
-        <div class="layer-content"><strong>"让每次上门服务可审计"</strong><br>智能工牌录音 → AI 实时引导/督导 → 自动生成审计级服务记录 → 政府随时可调取<br>核心信息：五重证据链（定位+时间+声纹身份+录音+AI 验证），造假成本极高，监管可信赖</div>
+        <div class="layer-content"><strong>"让每次上门服务可审计"</strong><br>多模态感知（工牌录音+雷达轨迹+穿戴体征）→ AI 融合分析/实时引导 → 自动生成审计级服务记录 → 政府随时可调取<br>核心信息：六重证据链（定位+时间+声纹身份+录音+雷达轨迹+AI 验证），多源交叉，监管可信赖</div>
       </div>
       <div class="arch-layer" style="background: var(--gold-bg);">
         <div class="layer-label" style="color: var(--gold); width: 160px;">12个月内<br>（平台故事）</div>
